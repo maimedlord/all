@@ -37,10 +37,9 @@ let LAST_MONTH_INPUT = '';
 let LAST_SORT_BY = '';
 let TASKS_OBJ = false;
 const LCL_OFFSET = new Date().getTimezoneOffset() * 60 * 1000;
-// let VIEWS_OBJ = false;
+let VIEWS_OBJ = false;
 // const URL_BASE = 'https://alex-haas.com/tv2/api';
 const URL_BASE = 'http://127.0.0.1:5000/tv2/api';
-// const URL_BASE = 'https://alex-haas.com/tv2/api';
 
 function close_popups() {
     // Select all divs with the class 'popup'
@@ -260,9 +259,11 @@ async function get_tasks() {
         // draw the notes
         for (let i = 0; i < TASKS_OBJ['data'].length; i++) {
             let task_container = document.createElement('div');
+            let temp_color = TASKS_OBJ['data'][i]['color'];
+            if (temp_color === 'ffffff' || temp_color === "") { task_container.style.border = '2px dashed black'; }
+            else { task_container.style.borderColor = '#' + temp_color; }
             task_container.className = 'task_container';
             task_container.id = TASKS_OBJ['data'][i]['_id'];
-            task_container.style.borderColor = '#' + TASKS_OBJ['data'][i]['color'];
             task_container.dataset.datecreated = TASKS_OBJ['data'][i]['dateCreated'];
             task_container.dataset.dateend = TASKS_OBJ['data'][i]['dateEnd'];
             task_container.dataset.datestart = TASKS_OBJ['data'][i]['dateStart'];
@@ -531,10 +532,11 @@ function draw_month(month, year) {
                     }
                     let day_element = document.getElementById(start_year + '-' + start_month + '-' + temp_start_date.getDate());
                     let temp_div = document.createElement('div');
+                    let temp_color = temp_obj[i]['color'];
+                    if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
+                    else { temp_div.style.border = 'solid ' + '#' + temp_color; }
                     temp_div.id = rec_tasks[ii]['id'];
                     temp_div.onclick = () => edit_task_popup(temp_div.id);
-                    temp_div.style.borderColor = '#' + temp_obj[i]['color'];
-                    temp_div.style.borderStyle = 'solid';
                     temp_div.innerText = temp_obj[i]['title'];
                     day_element.append(temp_div);
                 }
@@ -563,10 +565,11 @@ function draw_month(month, year) {
                 // write task
                 let day_element = document.getElementById(start_date_utc.getFullYear() + '-' + (start_date_utc.getMonth() + 1) + '-' + start_date_utc.getDate().toString());
                 let temp_div = document.createElement('div');
+                let temp_color = temp_obj[i]['color'];
+                if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
+                else { temp_div.style.border = 'solid ' + '#' + temp_color; }
                 temp_div.id = temp_obj[i]['_id'] + ',' + temp_obj[i]['dateStart'] + ',' + (end_date_utc !== null ? temp_obj[i]['dateEnd'] : '');
                 temp_div.onclick = () => edit_task_popup(temp_div.id);
-                temp_div.style.borderColor = '#' + temp_obj[i]['color'];
-                temp_div.style.borderStyle = 'dotted';
                 temp_div.innerText = temp_obj[i]['title'];
                 day_element.append(temp_div);
                 continue;
@@ -629,8 +632,11 @@ function draw_month(month, year) {
                     let temp_div = document.createElement('div');
                     temp_div.id = rec_task_id;
                     temp_div.onclick = () => edit_task_popup(temp_div.id);
-                    temp_div.style.borderColor = '#' + temp_obj[i]['color'];
-                    temp_div.style.borderStyle = 'dotted';
+                    let temp_color = temp_obj[i]['color'];
+                    if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
+                    else { temp_div.style.border = 'solid ' + '#' + temp_color; }
+                    // temp_div.style.borderColor = '#' + temp_obj[i]['color'];
+                    // temp_div.style.borderStyle = 'dotted';
                     temp_div.innerText = temp_obj[i]['title'];
                     day_element.append(temp_div);
                 }
@@ -714,10 +720,13 @@ function draw_month(month, year) {
                         let month_day = temp_start_date.getDate();// should be local time?
                         let day_element = document.getElementById(temp_start_date.getFullYear() + '-' + (temp_start_date.getMonth() + 1) + '-' + month_day.toString());
                         let temp_div = document.createElement('div');
+                        let temp_color = temp_obj[i]['color'];
+                        if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
+                        else { temp_div.style.border = 'solid ' + '#' + temp_color; }
                         temp_div.id = rec_task_id;
                         temp_div.onclick = () => edit_task_popup(temp_div.id);
-                        temp_div.style.borderColor = '#' + temp_obj[i]['color'];
-                        temp_div.style.borderStyle = 'dotted';
+                        // temp_div.style.borderColor = '#' + temp_obj[i]['color'];
+                        // temp_div.style.borderStyle = 'dotted';
                         temp_div.innerText = temp_obj[i]['title'];
                         day_element.append(temp_div);
                     }
@@ -775,10 +784,13 @@ function draw_month(month, year) {
                 }
                 // write task
                 let temp_div = document.createElement('div');
+                let temp_color = temp_obj[i]['color'];
+                if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
+                else { temp_div.style.border = 'solid ' + '#' + temp_color; }
                 temp_div.id = temp_obj[i]['_id'] + ',' + temp_date_start.toISOString().slice(0, -5) + ',' + temp_date_end.toISOString().slice(0, -5);
                 temp_div.onclick = () => edit_task_popup(temp_div.id);
-                temp_div.style.borderColor = '#' + temp_obj[i]['color'];
-                temp_div.style.borderStyle = 'dotted';
+                // temp_div.style.borderColor = '#' + temp_obj[i]['color'];
+                // temp_div.style.borderStyle = 'dotted';
                 temp_div.innerText = temp_obj[i]['title'];
                 if (too_late) {
                     temp_div.style.backgroundColor = 'red';
@@ -841,10 +853,13 @@ function draw_month(month, year) {
                         let month_day = temp_start_date.getDate();// should be local time?
                         let day_element = document.getElementById(temp_start_date.getFullYear() + '-' + (temp_start_date.getMonth() + 1) + '-' + month_day.toString());
                         let temp_div = document.createElement('div');
+                        let temp_color = temp_obj[i]['color'];
+                        if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
+                        else { temp_div.style.border = 'solid ' + '#' + temp_color; }
                         temp_div.id = rec_task_id;
                         temp_div.onclick = () => edit_task_popup(temp_div.id);
-                        temp_div.style.borderColor = '#' + temp_obj[i]['color'];
-                        temp_div.style.borderStyle = 'dotted';
+                        // temp_div.style.borderColor = '#' + temp_obj[i]['color'];
+                        // temp_div.style.borderStyle = 'dotted';
                         temp_div.innerText = temp_obj[i]['title'];
                         day_element.append(temp_div);
                     }
@@ -1286,8 +1301,10 @@ id_task_choose_series.onclick = function () {
 
 // ???
 window.onload=function () {
-    get_tasks().catch(error => console.error("Error in get_tasks:", error));
-    view_configs_get('tasks')
+    get_tasks()
+        .then(() => {
+            view_configs_get('tasks');
+        })
         .then(() => {
             view_apply();
             // sort tasks
@@ -1304,5 +1321,6 @@ window.onload=function () {
             }
             draw_month(cal_now_month, cal_now_year);
         })
-        .catch(error => console.error("Error in view_configs_get:", error));
+        .catch(error => console.error("Error in get_tasks(), view_configs_get(), view_apply(), sort_tasks():", error))
+
 }

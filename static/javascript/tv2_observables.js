@@ -190,9 +190,12 @@ async function get_obss() {
             let temp_created_date = new Date(OBSS_OBJ['data'][i]['dateCreated'] + 'Z');
             const temp_id = `${OBSS_OBJ['data'][i]['_id']},list`
             let obs_container = document.createElement('div');
+            // prep color
+            let temp_color = OBSS_OBJ['data'][i]['color'];
+            if (temp_color === 'ffffff' || temp_color === "") { obs_container.style.border = '2px dashed black'; }
+            else { obs_container.style.borderColor = '#' + temp_color; }
             obs_container.className = 'obs_container';
             obs_container.id = OBSS_OBJ['data'][i]['_id'];
-            obs_container.style.borderColor = '#' + OBSS_OBJ['data'][i]['color'];
             obs_container.dataset.datecreated = OBSS_OBJ['data'][i]['dateCreated'];
             obs_container.dataset.firstobserved = temp_first_observed;
             obs_container.dataset.lastobserved = temp_last_observed;
@@ -349,13 +352,16 @@ function show_recordedObss(obs_id) {
         if (!obs_obj.recordedObss || obs_obj.recordedObss.length === 0) { return; }
         // draw recordedObss in reverse with newest first
         for (let i = obs_obj.recordedObss.length - 1; i >= 0; i--) {
+            let temp_div = document.createElement('div');
             // prep date
             let temp_created_date = new Date(obs_obj.recordedObss[i].dateCreated + 'Z');
             temp_created_date.setTime(temp_created_date.getTime() - LCL_OFFSET);
             temp_created_date = temp_created_date.toISOString().slice(0, -5);
-            let temp_div = document.createElement('div');
+            // prep color
+            let temp_color = obs_obj.recordedObss[i].color;
+            if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
+            else { temp_div.style.borderColor = '#' + temp_color; }
             temp_div.className = 'observed_container';
-            temp_div.style.borderColor = '#' + obs_obj.recordedObss[i].color;
             temp_div.id = obs_obj.recordedObss[i].id + ',' + obs_obj.recordedObss[i].dateCreated;
             temp_div.innerText = `datetime-utc: ${temp_created_date}
                 duration: ${obs_obj.recordedObss[i].duration}
