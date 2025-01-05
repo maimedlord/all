@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" content="width=device-width, initial-scale=1" name="viewport">
+        {% block title %}
+        {% endblock %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/tv2_init.css') }}">
+        {% block css %}
+        {% endblock %}
+        {% block javascript_head %}
+        {% endblock %}
+    </head>
+<body>
+<div id="nav">
+    <div>
+        <a href="{{ url_for('index') }}">alex-haas.com</a>
+    </div>
+    {% if current_user.is_authenticated %}
+        <div>
+            <a href="{{ url_for('tv2_account') }}">account</a>
+        </div>
+        <div>
+            <a href="{{ url_for('tv2_logout') }}">logout</a>
+        </div>
+        <div>
+            <a href="{{ url_for('tv2_notes') }}">notes</a>
+        </div>
+        <div>
+            <a href="{{ url_for('tv2_observables') }}">observables</a>
+        </div>
+        <div>
+            <a href="{{ url_for('tv2_tasks') }}">tasks</a>
+        </div>
+    {% else %}
+        <div>
+            <a href="{{ url_for('tv2_user_create') }}">create user</a>
+        </div>
+        <div>
+            <a href="{{ url_for('tv2_login') }}">login</a>
+        </div>
+    {% endif %}
+</div>
+{% block body %}
+{% endblock %}
+<script src="{{ url_for('static', filename='javascript/tv2_init.js') }}"></script>
+{% block javascript_footer %}
+{% endblock %}
+</body>
+</html>

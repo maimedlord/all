@@ -1,0 +1,32 @@
+body {
+    /*background-color: rgb(240, 240, 240);*/
+    height: 100%;
+    width: 100%;
+}
+.err_message {
+
+}
+#err_messages_container {
+
+}
+#nav {
+    align-items: center;
+    /*background-color: darkgrey;*/
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+.row10 {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    /*width: 100%;*/
+}
+.rrow10 {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    /*width: 100%;*/
+}

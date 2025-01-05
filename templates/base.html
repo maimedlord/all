@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
+        {% block css %}
+        {% endblock %}
+        {% block javascript %}
+        {% endblock %}
+    </head>
+<body>
+    <a href="{{ url_for('index') }}">
+        <div id="header">
+            <div id="header_cell_wrapper">
+                {% for i in range(80) %}
+                    <div class="header_cell"></div>
+                {% endfor %}
+            </div>
+            <div id="header_top"></div>
+        </div>
+    </a>
+    <div id="nav">
+        <div class="nav_item" id="nav_resume">
+            <a class="notextdecoration" href="{{ url_for('resume_professional_skillset') }}">resume<br>
+                professional skillset</a>
+        </div>
+        <div class="nav_item" id="nav_projects">
+            <a class="notextdecoration" href="{{ url_for('projects') }}">projects</a>
+        </div>
+        <div class="nav_item" id="nav_tutorials">
+            <a class="notextdecoration" href="{{ url_for('tutorials') }}">tutorials</a>
+        </div>
+        <div class="nav_item" id="nav_art">
+            <a class="notextdecoration" href="{{ url_for('art') }}">art</a>
+        </div>
+        <div class="nav_item" id="nav_tv2">
+            <a class="notextdecoration" href="{{ url_for('tv2_index') }}">tv2</a>
+        </div>
+    </div>
+    {% block body %}
+    {% endblock %}
+    <div id="footer">
+        &copy; alex-haas.com 2024
+    </div>
+</body>
+</html>

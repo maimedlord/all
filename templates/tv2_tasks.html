@@ -1,0 +1,215 @@
+{% extends 'tv2_init.html' %}
+{% block title %}
+    <title>tracking v2 - tasks</title>
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tv2_tasks.css') }}">
+{% endblock %}
+{% block body %}
+{#  popup div for creating a task  #}
+    <div class="popup" id="task_create_container">
+        <div class="close_confirm_container">
+            <div class="button button_close_x" onclick="close_popups()">x</div>
+        </div>
+        <div class="popup" id="task_create_error_message">
+            the title cannot be blank
+        </div>
+        <form id="form_create_task" name="form_create_task">
+            <label for="create_task_title">title:</label><br>
+            <input class="input_field_text" id="create_task_title" name="create_task_title"  type="text"><br>
+            <label for="create_task_description">description:</label><br>
+            <input class="input_field_text" id="create_task_description" name="create_task_description"  type="text"><br>
+            task children:<br>
+            task parents:<br>
+            <label for="create_task_datestart">start time:</label><br>
+            <input id="create_task_datestart" name="create_task_datestart" type="datetime-local"><br>
+            <label for="create_task_dateend">end time:</label><br>
+            <input id="create_task_dateend" name="create_task_dateend" type="datetime-local"><br>
+{#            <label for="create_task_status" name='create_task_status'>status:</label><br>#}
+{#            <select id="create_task_status" name="create_task_status" >#}
+{#                <option value="completed">completed</option>#}
+{#                <option selected value="open">open</option>#}
+{#                <option value="skipped">skipped</option>#}
+{#            </select><br>#}
+            <label for="create_task_reminder">reminder:</label><br>
+            <i>comma delimited six-char reminders: nnnnvv: EX 0005hr, 0035mn, 0001wk, 0003mt</i><br>
+            <input id="create_task_reminder" name="create_task_reminder" type="text"><br>
+            <label for="create_task_repeat">repeat:</label><br>
+            <i>daily,n,date|n|never</i><br>
+            <i>weekly,n,date|n|never,thee-char-days-of-week-'-'-delimited</i><br>
+            <i>monthly,n,date|n|never,days-of-month-'-'-delimited,bool</i><br>
+            <i>trigger,n,date|n|never</i><br>
+            <input id="create_task_repeat" name="create_task_repeat" type="text"><br>
+            <label for="create_task_guests">guests:</label><br>
+            <input class="input_field_text" id="create_task_guests" name="create_task_guests" type="text"><br>
+            <label for="create_task_color">color:</label><br>
+            <input id="create_task_color" name="create_task_color" type="color" value="#FFFFFF"><br>
+            <label for="create_task_location">location:</label><br>
+            <input id="create_task_location" name="create_task_location"  type="text"><br>
+            <label for="create_task_priority">priority:</label><br>
+            <input id="create_task_priority" max="100" min="0" name="create_task_priority"  type="number"><br>
+            <label for="create_task_tags">tags <i>comma separated</i>:</label><br>
+            <input class="input_field_text" id="create_task_tags" name="create_task_tags"  type="text"><br>
+            <label for="create_task_text">text:</label><br>
+            <input class="input_field_text" id="create_task_text" name="create_task_text"  type="text">
+            <br>
+            <button type="button" id="button_task_create_submit">create task</button>
+        </form>
+    </div>
+{#  popup div for confirming deleting a task #}
+    <div class="popup" id="task_confirm_delete_container">
+        <div class="close_confirm_container">
+            <div class="button button_close_x" onclick="close_popups()">x</div>
+        </div>
+        Are you sure you want to delete the task?
+        <br>
+        <div id="menu_confirm_delete_container">
+            <div class="button" id="button_delete_no">no</div>
+            <div class="button" id="button_delete_yes">yes</div>
+        </div>
+    </div>
+{#  popup div for editing a task  #}
+    <div class="popup" id="task_edit_container">
+        <div class="close_confirm_container">
+            <div class="button button_close_x" onclick="close_popups()">x</div>
+        </div>
+        <div id="task_one_or_series">
+            <span id="task_choose_one">edit this task</span>
+            <span id="task_choose_series">edit the master/series</span>
+        </div>
+        <div id="task_edit_one">
+            <div class="popup" id="t_update_error_message">
+                the title cannot be blank
+            </div>
+            <form id="form_update_t" name="form_update_t">
+                <input id="update_t_id" name="update_task_id" type="hidden">
+                <label for="update_t_datestart">start time:</label><br>
+                <input id="update_t_datestart" name="update_t_datestart" type="datetime-local"><br>
+                <label for="update_t_dateend">end time:</label><br>
+                <input id="update_t_dateend" name="update_t_dateend" type="datetime-local"><br>
+                <label for="update_t_location">location:</label><br>
+                <input id="update_t_location" name="update_t_location"  type="text"><br>
+                <label for="update_t_guests">guests:</label><br>
+                <input class="input_field_text" id="update_t_guests" name="update_t_guests"  type="text"><br>
+                <label for="update_t_intensity">intensity:</label><br>
+                <input id="update_t_intensity" max="100" min="0" name="update_t_intensity"  type="number"><br>
+{#                <label for="update_t_priority">priority:</label><br>#}
+{#                <input id="update_t_priority" max="100" min="0" name="update_t_priority"  type="number"><br>#}
+                <label for="update_t_status">status:</label><br>
+                <select id="update_t_status" name="update_t_status" >
+                    <option value="closed">closed</option>
+                    <option value="completed">completed</option>
+                    <option value="deleted">deleted</option>
+                    <option value="open" selected>open</option>
+                    <option value="skipped">skipped</option>
+                </select><br>
+                <label for="update_t_tags">tags <i>comma separated</i>:</label><br>
+                <input class="input_field_text" id="update_t_tags" name="update_t_tags"  type="text"><br>
+{#                <label for="update_t_text">text:</label><br>#}
+{#                <input id="update_t_text" name="update_t_text"  type="text">#}
+                <b>!!! a note object tied to this subtask would go here...</b>
+                <br>
+                <label for="update_t_note">note:</label><br>
+                <input class="input_field_text" id="update_t_note" name="update_t_note"  type="text">
+                <div id="edit_t_buttons">
+                    <button type="button" id="button_t_delete_submit">delete recordedTask</button>
+                    <button type="button" id="button_t_update_submit">update recordedTask</button>
+                </div>
+            </form>
+        </div>
+        <div id="task_edit_series">
+            <div class="popup" id="task_update_error_message">
+                the title cannot be blank
+            </div>
+            <form id="form_update_task" name="form_update_task">
+                <input id="update_task_id" name="update_task_id" type="hidden">
+                <label for="update_task_title">title:</label><br>
+                <input class="input_field_text" id="update_task_title" name="update_task_title"  type="text"><br>
+                <label for="update_task_description">description:</label><br>
+                <input class="input_field_text" id="update_task_description" name="update_task_description"  type="text"><br>
+                <label for="update_task_color">color:</label><br>
+                <input id="update_task_color" name="update_task_color" type="color"><br>
+                task children:<br>
+                task parents:<br>
+                <label for="update_task_datestart">start time:</label><br>
+                <input id="update_task_datestart" name="update_task_datestart" type="datetime-local"><br>
+                <label for="update_task_dateend">end time:</label><br>
+                <input id="update_task_dateend" name="update_task_dateend" type="datetime-local"><br>
+                <label for="update_task_reminder">reminder:</label><br>
+                <i>comma delimited six-char reminders: nnnnvv: EX 0005hr, 0035mn, 0001wk, 0003mt</i><br>
+                <input id="update_task_reminder" name="update_task_reminder" type="text"><br>
+                <label for="update_task_repeat">repeat:</label><br>
+                <i>daily,n,date|n|never</i><br>
+                <i>weekly,n,date|n|never,thee-char-days-of-week-'-'-delimited</i><br>
+                <i>monthly,n,date|n|never,days-of-month-'-'-delimited,bool</i><br>
+                <i>trigger,n,date|n|never</i><br>
+                <input id="update_task_repeat" name="update_task_repeat" type="text"><br>
+                <label for="update_task_location">location:</label><br>
+                <input id="update_task_location" name="update_task_location"  type="text"><br>
+                <label for="update_task_guests">guests:</label><br>
+                <input class="input_field_text" id="update_task_guests" name="update_task_guests"  type="text"><br>
+    {#            <label for="update_task_intensity">intensity:</label><br>#}
+    {#            <input id="update_task_intensity" max="100" min="0" name="update_task_intensity"  type="number"><br>#}
+                <label for="update_task_priority">priority:</label><br>
+                <input id="update_task_priority" max="100" min="0" name="update_task_priority"  type="number"><br>
+                <label for="update_task_tags">tags <i>comma separated</i>:</label><br>
+                <input class="input_field_text" id="update_task_tags" name="update_task_tags"  type="text"><br>
+                <label for="update_task_text">text:</label><br>
+                <input class="input_field_text" id="update_task_text" name="update_task_text"  type="text">
+                <br>
+                <button type="button" id="button_task_update_submit">update task</button>
+            </form>
+        </div>
+    </div>
+
+{#  ...  #}
+    <div id="tasks_menu">
+        <div class="button" id="button_create">create</div>
+        <div>
+            sort by:
+            <select id="select_sort_by" name="select_sort_by" title="select_sort_by">
+                <option disabled selected value="">sort by...</option>
+                <option value="datecreated,0">date created ascending</option>
+                <option value="datecreated,1">date created descending</option>
+                <option value="datestart,0">date start ascending</option>
+                <option value="datestart,1">date start descending</option>
+                <option value="dateend,0">date end ascending</option>
+                <option value="dateend,1">date end descending</option>
+                <option value="intensity,0">intensity ascending</option>
+                <option value="intensity,1">intensity descending</option>
+                <option value="recordedtasksnum,0">number of recordedTasks ascending</option>
+                <option value="recordedtasksnum,1">number of recordedTasks descending</option>
+                <option value="priority,0">priority ascending</option>
+                <option value="priority,1">priority descending</option>
+                <option value="textlength,0">text length ascending</option>
+                <option value="textlength,1">text length descending</option>
+                <option value="title,0">title ascending</option>
+                <option value="title,1">title descending</option>
+            </select>
+        </div>
+    </div>
+    <div id="calendar_container">
+        <div id="calendar_menu">
+            <div class="button" id="button_month_next">next month</div>
+            <div class="button" id="button_month_prev">previous month</div>
+            <div> - </div>
+            <div class="button" id="button_month_now">current month</div>
+            <div> - </div>
+            <div id="choose_month">
+                go to:
+                <label for="choose_month_input">
+                    <input id="choose_month_input" name="choose_month_input" type="month" title="choose_month_input">
+                </label>
+                <span id="choose_month_go_input">go</span>
+            </div>
+        </div>
+        <div id="calendar_title"></div>
+        <div id="calendar_view" data-view_config=""></div>
+    </div>
+    <div id="tasks_container">
+        no data loaded...
+    </div>
+{% endblock %}
+{% block javascript_footer %}
+    <script src="{{ url_for('static', filename='javascript/tv2_tasks.js') }}"></script>
+{% endblock %}

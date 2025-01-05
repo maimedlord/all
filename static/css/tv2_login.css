@@ -1,0 +1,16 @@
+#login_container {
+    align-items: center;
+    /*border: black 1px solid;*/
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    position: fixed;         /* Locks the div in place, even when scrolling */
+    top: 50%;                  /* Aligns the div at the top of the viewport */
+    left: 50%;               /* Centers the div horizontally */
+    transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
+    /*box-shadow: black 2px 2px;*/
+    padding: 20px;
+    text-align: center;
+    width: 400px;
+}

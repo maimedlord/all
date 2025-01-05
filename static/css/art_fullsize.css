@@ -1,0 +1,14 @@
+.art_fullsize_main {
+    font-size: xx-large;
+    margin: 30px auto 0px auto;
+    text-align: center;
+    width: 100%
+}
+img {
+    max-height: 100%;
+    max-width: 100%;
+}
+#go_back {
+    font-size: x-large;
+    width: 100%;
+}

@@ -1,0 +1,112 @@
+#description {
+    margin: 0 auto 0 auto;
+    max-width: 600px;
+}
+.flashcards_title {
+    background-color: green;
+    color: white;
+    font-size: larger;
+    padding: 3px;
+}
+#linux_title {
+    background-color: black;
+    border-bottom: 5px solid yellow;
+    color: white;
+}
+#powershell_title {
+    background-color: dodgerblue;
+    color: white;
+}
+.practice_title {
+    background-color: rebeccapurple;
+    color: white;
+    font-size: larger;
+    padding: 3px;
+}
+.topic {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    box-shadow: 5px 5px grey;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 800px;
+    position: relative;
+}
+.topic_fc {
+    padding: 5px;
+}
+.topic_prac {
+    border-top: 1px dotted black;
+    padding: 5px;
+}
+.topic_tuts {
+    border-top: 1px dotted black;
+    padding: 5px;
+}
+.topic_title {
+    background-color: lightgrey;
+    font-size: x-large;
+    height: 35px;
+    padding: 5px;
+    text-align: center;
+}
+.tuts_title {
+    background-color: #f35325;
+    color: white;
+    font-size: larger;
+    padding: 3px;
+}
+#tutorials {
+    align-items: start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px auto 0 auto;
+    min-width: 400px;
+    max-width: 1400px;
+}
+#windows_title {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+#windows_title_blue {
+    background-color: #05a6f0;
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+}
+#windows_title_green {
+    background-color: #81bc06;
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+}
+#windows_title_red {
+    background-color: #f35325;
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+}
+#windows_title_text {
+    background-color: transparent;
+    display: block;
+    font-weight: bold;
+    position: absolute;
+    width: 100%;
+}
+#windows_title_yellow {
+    background-color: #ffba08;
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+}

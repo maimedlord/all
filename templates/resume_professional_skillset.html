@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block title %}resume and professional skillset{% endblock %}
+{% block css %}
+    <link href="{{ url_for('static', filename='css/resume_professional_skillset.css') }}" rel="stylesheet">
+{% endblock %}
+{% block javascript %}
+    <script src="{{ url_for('static', filename='javascript/resume_professional_skillset.js') }}"></script>
+{% endblock %}
+{% block body %}
+    {% if message %}
+        <div id="message">
+            {{ message }}
+        </div>
+    {% endif %}
+    <div id="resume">
+        <div id="resume_download">
+            <a href="{{ url_for('static', filename='downloads/Alex Haas resume.pdf') }}" download>download my general resume</a>
+        </div>
+        <div id="resume_email">
+            <form enctype="multipart/form-data" id="form_email" method="post" name="form_email">
+                email a copy<br>
+                <input id="input_email" name="input_email" type="email"> <input type="submit" value="send">
+            </form>
+        </div>
+    </div>
+    <div id="skillset_intro">
+         Here is what I consider to be an overview of my professional technical skillset. I have rated myself on a scale of 1 to 10. 1 being a type of 'dabling' or initial-research and 10 representing the amount of knowledge needed to use that skill daily at a high level in a professional environment.
+    </div>
+    <div id="skillset_wrapper">
+        <div id="sort_note">
+            press again to sort the other direction!
+        </div>
+        <div id="skillset_sort">
+            <div class="sort_div" id="sort_alpha" onclick="sortAlpha()">
+                sort alphabetically
+            </div>
+            <div class="sort_div" id="sort_experience" onclick="sortExperience()">
+                sort by experience
+            </div>
+        </div>
+        <div id="skillset" data-sortdirection="asc" data-sorttype="alpha">
+            <div class="skill" data-name="c++" data-val="3">
+                <span class="skill_title">c++</span>
+                <div class="rating_wrapper" data-val="3"></div>
+                <span class="skill_comments">I have used c++ to generate simple console applications that process data: mostly log file generation.</span>
+            </div>
+            <div class="skill" data-name="CSS" data-val="9">
+                <span class="skill_title">CSS</span>
+                <div class="rating_wrapper" data-val="9"></div>
+                <span class="skill_comments">I've been using CSS well over 20 years by now and enjoy using it to this day.</span>
+            </div>
+            <div class="skill" data-name="Desktop Support" data-val="10">
+                <span class="skill_title">Desktop Support</span>
+                <div class="rating_wrapper" data-val="10"></div>
+                <span class="skill_comments">I've worked professionally as a desktop support technician and administrate Linux/Windows daily. This experience isn't limited to operating systems or applications. I have cleaned and fixed more desktops, laptops, peripherals, printers, and scanners than I can remember. Since my early teenage years I've been building high-end desktop gaming computers. Dabbling with hardware of all types is a true passion of mine. Additionally, I've always enjoyed helping those who are  tech-illiterate as it reminds of how differently we each use and view technology.</span>
+            </div>
+            <div class="skill" data-name="Flask" data-val="9">
+                <span class="skill_title">Flask</span>
+                <div class="rating_wrapper" data-val="9"></div>
+                <span class="skill_comments">Flask is my preferred web server and I have used it for many years by now. It is flexible, easy to learn and, most importantly, you can create a simple website in minutes. Additionally, developing in Python is a real treat compared to some other languages.</span>
+            </div>
+            <div class="skill" data-name="HTML" data-val="10">
+                <span class="skill_title">HTML</span>
+                <div class="rating_wrapper" data-val="10"></div>
+                <span class="skill_comments">I've been using HTML well over 20 years and am comfortable with this simple yet powerful markup language.</span>
+            </div>
+            <div class="skill" data-name="JavaScript" data-val="7">
+                <span class="skill_title">JavaScript</span>
+                <div class="rating_wrapper" data-val="7"></div>
+                <span class="skill_comments">JavaScript is what makes browsing the Internet dynamic, and I've been using JavaScript in my web-sites for many years now. Though I use the vanilla library and JQuery to animate and re-draw portions of the browser's view there is much more to that world than I have fully explored.</span>
+            </div>
+            <div class="skill" data-name="Linux Administration" data-val="10">
+                <span class="skill_title">Linux Administration</span>
+                <div class="rating_wrapper" data-val="10"></div>
+                <div class="skill_certs">
+                    <div>
+                        <i>currently pursuing RHCE (Red Hat Certified Engineer)</i>
+                    </div>
+                    <a href="https://rhtapps.redhat.com/verify?certId=230-245-201" rel="noopener noreferrer" target="_blank">
+                        <img alt="RHCSA logo" src="{{ url_for('static', filename='/images/rhcsa_certified.png') }}" title="RHCSA logo with link to certification proof">
+                    </a>
+                </div>
+                <span class="skill_comments">Linux is the platform I use for most of my web projects and a fascinating operating system! Having acquired the RHCSA, I am currently pursuing a RHCE, and intend to acquire further architecture and security-based certificates from Red Hat. But, despite my current pursuits, I have years of experience administrating Linux. Installing Linux, managing accounts, permissions and automating system tasks are things that I am comfortable with. I've spent considerable time with multiple distros: I've built Kali clones in Arch and use Ubuntu for my web servers. Professionally I have built and administered RHEL servers.</span>
+            </div>
+            <div class="skill" data-name="Network Engineering" data-val="9">
+                <span class="skill_title">Network Engineering</span>
+                <div class="rating_wrapper" data-val="9"></div>
+                <div class="skill_certs">
+                    <a href="https://www.credly.com/badges/37aaea85-1710-436f-b723-c3483e144cd4" rel="noopener noreferrer" target="_blank">
+                        <img alt="networkpluslogo" src="{{ url_for('static', filename='/images/networkpluslogo.png') }}" title="CompTia Network+ logo with link to certification proof">
+                    </a>
+                    <a href="https://www.credly.com/badges/348d730a-5766-46b6-a601-03aeee43d080" rel="noopener noreferrer" target="_blank">
+                        <img alt="networkpluslogo" src="{{ url_for('static', filename='/images/securitypluslogo.png') }}" title="CompTia Security+ logo with link to certification proof">
+                    </a>
+                </div>
+                <span class="skill_comments">I am certified in both CompTIA Network+ and Security+. I enjoy networking thoroughly and have built many small home/office networks both physically and virtually. As a professional network engineer I've troubleshot a variety of network problems in many hotels and other businesses across New York City. This includes creating and installing ethernet cabling, racking servers and video equipment, administrating/troubleshooting managed switches and routers/firewalls. After designing networks I have developed a love for Visio and how effecively it can visualize network concepts/topologies.</span>
+            </div>
+            <div class="skill" data-name="PowerShell" data-val="10">
+                <span class="skill_title">PowerShell</span>
+                <div class="rating_wrapper" data-val="10"></div>
+                <span class="skill_comments">I love Bash, but PowerShell is my favorite system-scripting language! PowerShell is all-powerful and is fun to learn as well! The similarities to Bash are generally only the best ones, and it improves in many other areas: Objects are much more powerful than strings. The automation and generous help-system presented by PowerShell makes system administration an easy pleasure. Long live Jeffrey Snover.</span>
+            </div>
+            <div class="skill" data-name="Python" data-val="8">
+                <span class="skill_title">Python</span>
+                <div class="rating_wrapper" data-val="8"></div>
+                <span class="skill_comments">I have used Python for small console apps, hacking-scripts, cleaning large amounts of data, and web development. Despite many years of experience with Python I am well aware that it can do much more than what I typically use it for.</span>
+            </div>
+            <div class="skill" data-name="Windows Administration" data-val="9">
+                <span class="skill_title">Windows Administration</span>
+                <div class="rating_wrapper" data-val="9"></div>
+                <span class="skill_comments">I've been professionally administrating Windows for many years now. This includes administrating Windows with Active Directory integration. With PowerShell in my toolbelt I have been able to take my administrating of Windows to the next level. Nearly every facet of the system has a PowerShell API that can be scripted. Additionally, starting tasks from a fresh perspective isn't nearly as daunting thanks to PowerShell's excellent help system.</span>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

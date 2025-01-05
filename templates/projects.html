@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block title %}
+    projects
+{% endblock %}
+{% block css %}
+    <link href="{{ url_for('static', filename='/css/projects.css') }}" rel="stylesheet">
+{% endblock %}
+{% block javascript %}
+    <script src="{{ url_for('static', filename='/javascript/projects.js') }}"></script>
+{% endblock %}
+{% block body %}
+    <div id="title_default">
+        <h1>projects:</h1>
+    </div>
+    <div id="projects">
+
+            <div class="project" id="project_tracking">
+                <div class="project_inprogress">
+                    Working version! ... and in progress...
+                </div>
+                <a class="project_link" href="https://github.com/maimedlord/tracking" target="_blank">
+                    <div class="project_row">
+                        <img alt="thinking thumbnail" class="image_rounding" src="{{ url_for('static', filename='/images/tracking_thumbnail.png') }}">
+                        <div class="project_name">
+                            "tracking"
+                        </div>
+                    </div>
+                </a>
+                <div class="project_desc">
+                    Tracking is an application that helps it's user create events, track events, and visualize how events correlate with each other.
+                    <p>
+                    <a href="{{ url_for('tv2_index') }}" target="_blank">Click this link in order to check out a demo</a>. username = test@test.com, password = 'password'
+                    <p>
+                    Arete!
+                </div>
+            </div>
+        <div class="project" id="project_ab">
+            <div class="project_inprogress">
+                in progress...
+            </div>
+            <div class="project_row">
+                <img alt="ab thumbnail" class="image_rounding" src="{{ url_for('static', filename='/images/questionmark.png') }}">
+                <div class="project_name">
+                    "ab"
+                </div>
+            </div>
+            <div class="project_desc" id="ab_desc">
+                Hidden project here<br>
+                To come about when ready<br>
+                May light shine upon!
+            </div>
+        </div>
+        <a class="project_link" href="https://github.com/maimedlord/ssjr" target="_blank">
+            <div class="project" id="project_ssjr">
+                <div class="project_row">
+                    <img alt="ssjr_thumbnail" class="image_rounding" src="{{ url_for('static', filename='/images/ssjr_jr_thumbnail.png') }}">
+                    <div class="project_name">
+                        SlamStonks jr.
+                    </div>
+                </div>
+                <div class="project_desc">
+                    Some of the aspects of SlamStonk's development were built by team members other than myself, so I
+                    wanted to build those portions of the project myself for the sake of learning. Additionally, I felt
+                    the project could have been built more to run more efficiently if someone like me had the time to
+                    invest in solving those inefficiencies. SlamStonks jr. is the product of my endeavors and was
+                    considerably fun to work on! The project has room to grow, but for now it has suited its purpose.
+                    Perhaps more to come!
+                </div>
+            </div>
+        </a>
+        <a class="project_link" href="https://github.com/AhmedAshrafIbraheem/Slam_Stonks" target="_blank">
+            <div class="project" id="project_slamstonks">
+                <div class="project_row">
+                    <img alt="SlamStonks thumbnail" class="image_rounding" src="{{ url_for('static', filename='/images/ssjr_thumbnail.png') }}">
+                    <div class="project_name">
+                        SlamStonks
+                    </div>
+                </div>
+                <div class="project_desc">
+                    The original SlamStonks project. Slamstonks is a web application that monitors the most shorted
+                    stocks on the Nasdaq/S&P500 by recording their technical data as well as performing sentiment
+                    analysis on that stock on Twitter. The goal of SlamStonks is to take advantage of the Meme Stocks
+                    phenomena by helping end-users automate the task of learning a Meme stock is about to explode in
+                    value.
+                    <p>
+                        Built with the help of my Hunter classmates: Ahmed Moussa, Mohammed Uddin, and Shourav Ahmed.
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endblock %}

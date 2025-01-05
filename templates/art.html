@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}
+    art
+{% endblock %}
+{% block css %}
+    <link href="{{ url_for('static', filename='/css/art.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div id="art_main">
+        <a href="{{ url_for('art_fullsize', art_name="color warrior.png") }}">
+            <div class="art_thumbnail">
+                <img alt="teeth thumbnail" src="{{ url_for('static', filename="images/color_warrior_thumbnail.png") }}">
+                <p>
+                color warrior
+            </div>
+        </a>
+        <a href="{{ url_for('art_fullsize', art_name="teeth.png") }}">
+            <div class="art_thumbnail">
+                <img alt="teeth thumbnail" src="{{ url_for('static', filename="images/teeth_thumbnail.png") }}">
+                <p>
+                teeth
+            </div>
+        </a>
+        <a href="{{ url_for('art_fullsize', art_name="cool.png") }}">
+            <div class="art_thumbnail">
+                <img alt="cool thumbnail" src="{{ url_for('static', filename="images/cool_thumbnail.png") }}">
+                <p>
+                cool
+            </div>
+        </a>
+        <a href="{{ url_for('art_fullsize', art_name="it's only me.png") }}">
+            <div class="art_thumbnail">
+                <img alt="it's only me thumbnail" src="{{ url_for('static', filename="images/it's_only_me_thumbnail.png") }}">
+                <p>
+                it's only me
+            </div>
+        </a>
+        <a href="{{ url_for('art_fullsize', art_name="in journey.png") }}">
+            <div class="art_thumbnail">
+                <img alt="in journey thumbnail" src="{{ url_for('static', filename="images/in_journey_thumbnail.png") }}">
+                <p>
+                in journey
+            </div>
+        </a>
+        <a href="{{ url_for('art_fullsize', art_name="got plans for you.png") }}">
+            <div class="art_thumbnail">
+                <img alt="got plans for you thumbnail" src="{{ url_for('static', filename="images/got_plans_for_you_thumbnail.png") }}">
+                <p>
+                got plans for you
+            </div>
+        </a>
+        <a href="{{ url_for('art_fullsize', art_name='engaged.png') }}">
+            <div class="art_thumbnail">
+                <img alt="engaged thumbnail" src="{{ url_for('static', filename="images/engaged_thumbnail.png") }}">
+                <p>
+                engaged
+            </div>
+        </a>
+        <a href="{{ url_for('art_fullsize', art_name='King.png') }}">
+            <div class="art_thumbnail">
+                <img alt="engaged thumbnail" src="{{ url_for('static', filename="images/King_thumbnail.png") }}">
+                <p>
+                King
+            </div>
+        </a>
+        <a href="{{ url_for('art_fullsize', art_name="Magnificent.png") }}">
+            <div class="art_thumbnail">
+                <img alt="Magnificent thumbnail" src="{{ url_for('static', filename="images/Magnificent_thumbnail.png") }}">
+                <p>
+                Magnificent
+            </div>
+        </a>
+        <a href="{{ url_for('art_fullsize', art_name="I'm here fear.png") }}">
+            <div class="art_thumbnail">
+                <img alt="I'm here fear thumbnail" src="{{ url_for('static', filename="images/I'm_here_fear_thumbnail.png") }}">
+                <p>
+                I'm here fear
+            </div>
+        </a>
+        <a href="{{ url_for('art_fullsize', art_name="watching defensively.png") }}">
+            <div class="art_thumbnail">
+                <img alt="watching defensively thumbnail" src="{{ url_for('static', filename="images/watching_defensively_thumbnail.png") }}">
+                <p>
+                watching defensively
+            </div>
+        </a>
+    </div>
+{% endblock %}

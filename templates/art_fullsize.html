@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% block css %}
+        <link href="{{ url_for('static', filename='/css/art_fullsize.css') }}" rel="stylesheet">
+    {% endblock %}
+</head>
+<body>
+    <div id="go_back">
+        <a href="{{ url_for('art') }}">back to art</a>
+    </div>
+    <div class="art_fullsize_main">
+        <img src="/static/images/{{ art_name }}">
+    </div>
+</body>
+</html>

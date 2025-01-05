@@ -1,0 +1,134 @@
+#divider_left {
+    border-left: 2px solid black;
+    width: 50%;
+}
+#divider_right {
+    border-right: 2px solid black;
+    width: 50%;
+}
+#message {
+    background-color: lightgreen;
+    font-size: x-large;
+    margin: 20px auto 0 auto;
+    text-align: center;
+    width: 100%;
+}
+.rating_wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+.rating_cell {
+    border-bottom: 1px solid black;
+    flex-grow: 1;
+    font-size: x-small;
+    text-align: center;
+}
+.rating_cell_a {
+    background-color: #58B814;
+}
+.rating_cell_b {
+    background-color: white;
+}
+#resume {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    margin: 40px auto 0 auto;
+    max-width: 1000px;
+    min-width: 400px;
+}
+#resume_download {
+    max-width: 300px;
+    text-align: center;
+    width: 50%;
+}
+#resume_email {
+    max-width: 300px;
+    text-align: center;
+    width: 50%;
+}
+.skill {
+    background-color: #EAECEE;
+    border-radius: 10px;
+    box-shadow: 5px 5px grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 400px;
+}
+.skill_certs {
+    align-items: center;
+    color: red;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-around;
+    padding: 10px 5px 5px 5px;
+    text-align: center;
+}
+#skillset {
+    align-items: start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    margin: 50px auto 0 auto;
+    max-width: 1600px;
+}
+#skillset_intro {
+    margin: 30px auto 0 auto;
+    max-width: 800px;
+}
+#skillset_sort {
+    column-gap: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+    justify-content: center;
+    margin: 15px auto 0 auto;
+    max-width: 800px;
+    row-gap: 10px;
+}
+#skillset_wrapper {
+    /*background-color: rgba(0, 191, 255, 100%);*/
+    padding: 10px 0 20px 0;
+    margin: 20px auto 0 auto;
+}
+.skill_comments {
+    padding: 5px 10px 5px 10px;
+}
+.skill_title {
+    background-color: #6D8BD7;
+    border-bottom: 1px solid black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+}
+.sort_div {
+    align-items: center;
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: 5px 5px black;
+    cursor: pointer;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    margin: 0 auto 0 auto;
+    text-align: center;
+    width: 150px;
+}
+#sort_note {
+    font-style: italic;
+    font-weight: bold;
+    margin: 0 auto 0 auto;
+    text-align: center;
+}

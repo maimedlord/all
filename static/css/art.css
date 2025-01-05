@@ -1,0 +1,15 @@
+#art_main {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    margin: 20px 0 10px 0;
+    width: 100%;
+}
+.art_thumbnail {
+    font-size: larger;
+    padding: 5px;
+    text-align: center;
+}

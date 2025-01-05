@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block title %}
+    tutorials and other learning tools
+{% endblock %}
+{% block css %}
+    <link href="{{ url_for('static', filename='/css/tutorials.css') }}" rel="stylesheet">
+{% endblock %}
+{% block javascript %}
+    <script src="{{ url_for('static', filename='/javascript/tutorials.js') }}"></script>
+{% endblock %}
+{% block body %}
+    <div id="title_default">
+        <h1>learning aids and tutorials:</h1>
+    </div>
+    <div id="description">
+        In support of my learning tasks I create aids that help me keep what I have learned in memory. Maybe they'll be helpful to you too!
+    </div>
+    <div id="tutorials">
+        <div class="topic" data-topic="linux">
+            <div class="topic_title" id="linux_title">
+                Linux
+            </div>
+            <div class="topic_fc">
+                <span class="flashcards_title">flashcards</span>
+                <ul>
+                    <li><a href="{{ url_for('static', filename='/downloads/ah.Linux Bible 10th ed.apkg') }}" download>ah.Linux Bible 10th ed</a></li>
+                </ul>
+            </div>
+            <div class="topic_prac">
+                <span class="practice_title">practice</span>
+                <ul>
+                    <li>practice here...</li>
+                </ul>
+            </div>
+            <div class="topic_tuts">
+                <span class="tuts_title">tutorials</span>
+                <ul>
+                    <li>tutorials here...</li>
+                </ul>
+            </div>
+        </div>
+        <div class="topic" data-topic="networks">
+            <div class="topic_title">
+                Networks
+            </div>
+            <div class="topic_fc">
+                <span class="flashcards_title">flashcards</span>
+                <ul>
+                    <li><a href="{{ url_for('static', filename='/downloads/ah.network+.apkg') }}" download>ah.network+</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="topic" data-topic="powershell">
+            <div class="topic_title" id="powershell_title">
+                PowerShell
+            </div>
+            <div class="topic_fc">
+                <span class="flashcards_title">flashcards</span>
+                <ul>
+                    <li><a href="{{ url_for('static', filename='/downloads/ah.Learn PowerShell in a Month of Lunches 4th ed.apkg') }}" download>ah.Learn PowerShell in a Month of Lunches 4th ed</a></li>
+                </ul>
+            </div>
+            <div class="topic_prac">
+                <span class="practice_title">practice</span>
+                <ul>
+                    <li>practice here...</li>
+                </ul>
+            </div>
+            <div class="topic_tuts">
+                <span class="tuts_title">tutorials</span>
+                <ul>
+                    <li>tutorials here...</li>
+                </ul>
+            </div>
+        </div>
+        <div class="topic" data-topic="security">
+            <div class="topic_title">
+                Security
+            </div>
+            <div class="topic_fc">
+                <span class="flashcards_title">flashcards</span>
+                <ul>
+                    <li><a href="{{ url_for('static', filename='/downloads/ah.security+.apkg') }}" download>ah.security+</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="topic" data-topic="windows">
+            <div class="topic_title" id="windows_title">
+                <div id="windows_title_red"></div>
+                <div id="windows_title_green"></div>
+                <div id="windows_title_blue"></div>
+                <div id="windows_title_yellow"></div>
+            </div>
+            <div class="topic_title" id="windows_title_text">
+                Windows
+            </div>
+            <div class="topic_prac">
+                <span class="practice_title">practice</span>
+                <ul>
+                    <li>practice here...</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
