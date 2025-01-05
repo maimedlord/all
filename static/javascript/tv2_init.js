@@ -1,5 +1,5 @@
 // const API_URL_BASE = 'https://alex-haas.com/tv2/api';
-const API_URL_BASE = 'http://127.0.0.1/tv2/api';
+const API_URL_BASE = 'http://127.0.0.1:5000/tv2/api';
 // let VIEWS_OBJ = false;
 
 function is_all_digits(str) {

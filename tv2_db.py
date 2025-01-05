@@ -48,7 +48,7 @@ def note_create(id_str: str, note_obj: dict):
         raise Exception('unable to create note in database...')
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 
@@ -62,7 +62,7 @@ def note_delete(user_id_str: str, note_id_str: str):
         raise Exception('unable to delete note in database...')
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 # RETURN True if note updated || False if any errors encountered
@@ -104,7 +104,7 @@ def note_update(user_id_str: str, note_obj: dict) -> bool:
         return True
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return False
 
 # RETURN None if error or no docs || list of all docs if exist
@@ -138,7 +138,7 @@ def obs_create(user_id_str: str, obs_obj: dict):
         raise Exception('unable to create observable in database...')
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 def obs_delete(user_id_str: str, obs_id_str: str):
@@ -150,7 +150,7 @@ def obs_delete(user_id_str: str, obs_id_str: str):
         raise Exception('unable to delete observable in database...')
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 
@@ -177,7 +177,7 @@ def obs_observe(user_id_str: str, obs_obj: dict):
         return None
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 
@@ -233,7 +233,7 @@ def obs_update(user_id_str: str, obs_obj: dict):
         return None
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 # RETURN None if deleting recordedTask fails || update_one object if successful
@@ -251,7 +251,7 @@ def t_delete(user_id_str: str, t_id_str: str):
         return None
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 
@@ -294,7 +294,7 @@ def t_update(user_id_str: str, t_obj: dict):
         return None
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 
@@ -305,17 +305,6 @@ def task_create(id_str: str, task_obj: dict):
         now_time = datetime.now(timezone.utc)
         task_obj['dateCreated'] = now_time
         task_obj['recordedTasks'] = []
-        #   {
-        #       'color': '',
-        #       'dateScheduled':, datetime,
-        #       'dateUpdated': datetime,
-        #       'guests': [],
-        #       'intensity': n|null,
-        #       'location': '',
-        #       'status': '(completed)|(open)|(skipped)',
-        #       'note': '',
-        #       'tags': []
-        #   }
         task_obj['taskLog'] = [
             {
                 'logDate': datetime.now(timezone.utc),
@@ -340,16 +329,17 @@ def task_create(id_str: str, task_obj: dict):
         else:
             task_obj['priority'] = int(task_obj['priority'])
         # alphabetize the object before inserting
-        temp_dict =  dict(sorted(task_obj.items()))
+        temp_dict = dict(sorted(task_obj.items()))
         # push to db
         collection = db_tasks[id_str]
         response = collection.insert_one(temp_dict)
         if response and response.acknowledged:
             return response
         raise Exception('unable to create note in database...')
+        return True
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 # RETURN None if deleting task fails || delete_one object if successful
@@ -362,7 +352,7 @@ def task_delete(user_id_str: str, task_id_str: str):
         raise Exception('unable to delete task in database...')
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 # RETURN True if task updated || False if any errors encountered
@@ -430,7 +420,7 @@ def task_update(user_id_str: str, task_obj: dict) -> bool:
         return True
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return False
 
 
@@ -474,7 +464,7 @@ def user_update_userLog(key: str, logCode: int, logMessage: str, logTags: list[s
         return None
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 
@@ -499,7 +489,7 @@ def user_authenticate(email: str, password: str):
         return response
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 
@@ -527,7 +517,7 @@ def user_create(email: str, password: str, username: str) -> bool:
         return False
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return False
 
 
@@ -543,7 +533,7 @@ def user_logout_by_id(id_str):
         return None
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 
@@ -559,7 +549,7 @@ def user_is_active_by_id(id_str):
         return User(id_str, response['userName'])
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 
@@ -572,7 +562,7 @@ def user_is_email_exists(email):
         return False
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 
@@ -586,7 +576,7 @@ def view_get(id_str: str, target: str):
         return response
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return None
 
 # RETURN ???
@@ -605,7 +595,7 @@ def view_update(id_str: str, view_obj):
         return all_passed
     except Exception as e:
         print(str(e))
-        utility.log_write(str(e))
+        tv2_utility.log_write(str(e))
         return False
 
 
@@ -632,7 +622,7 @@ if __name__ == '__main__':
     #     'tags': ['tag1', 'tag2', 'TAG3'],
     #     'text': 'text of de note my boy UPDATED!'
     # })))
-    # print(json.dumps(utility.convert_datetimes_to_string({
+    # print(json.dumps(tv2_utility.convert_datetimes_to_string({
     #     'dateCreated': datetime.now(timezone.utc),
     #     'title': 'the title of the note',
     #     'location': 'location as string',

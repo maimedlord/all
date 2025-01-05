@@ -40,6 +40,7 @@ const LCL_OFFSET = new Date().getTimezoneOffset() * 60 * 1000;
 // let VIEWS_OBJ = false;
 // const URL_BASE = 'https://alex-haas.com/tv2/api';
 const URL_BASE = 'http://127.0.0.1:5000/tv2/api';
+// const URL_BASE = 'https://alex-haas.com/tv2/api';
 
 function close_popups() {
     // Select all divs with the class 'popup'
@@ -1090,13 +1091,13 @@ id_button_task_create_submit.onclick=async function () {
             date_end = null;
         }
         else {
-            date_end = new Date(id_form_dateend.value).toISOString();
+            date_end = new Date(id_form_dateend.value).toISOString().slice(0, -5);
         }
         if (id_form_datestart.value === "") {
             date_start = null;
         }
         else {
-            date_start = new Date(id_form_datestart.value).toISOString();
+            date_start = new Date(id_form_datestart.value).toISOString().slice(0, -5);
         }
         let task_obj = {
             'color': id_form_color.value.substring(1,id_form_color.value.length),
@@ -1116,6 +1117,8 @@ id_button_task_create_submit.onclick=async function () {
             'text': id_form_text.value,
             'title': id_form_title.value,
         }
+        console.log(task_obj);
+        console.log(JSON.stringify(task_obj));
         let url = URL_BASE + '/task_create/' + JSON.stringify(task_obj);
         // make asynchronous POST request to the API
         const response = await fetch(url, {method: 'GET'});
