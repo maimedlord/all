@@ -98,7 +98,7 @@ async function delete_task(task_id) {
         const data = await response.json();
         get_tasks()
             .then(() => {
-                draw_month(11, 2024);// NEED
+                draw_month(cal_now_month, cal_now_year);
             })
             .catch(error => console.error("Error in get_tasks:", error));
     } catch (error) {
@@ -567,7 +567,7 @@ function draw_month(month, year) {
                 let temp_div = document.createElement('div');
                 let temp_color = temp_obj[i]['color'];
                 if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
-                else { temp_div.style.border = 'solid ' + '#' + temp_color; }
+                else { temp_div.style.border = 'dotted ' + '#' + temp_color; }
                 temp_div.id = temp_obj[i]['_id'] + ',' + temp_obj[i]['dateStart'] + ',' + (end_date_utc !== null ? temp_obj[i]['dateEnd'] : '');
                 temp_div.onclick = () => edit_task_popup(temp_div.id);
                 temp_div.innerText = temp_obj[i]['title'];
@@ -634,7 +634,7 @@ function draw_month(month, year) {
                     temp_div.onclick = () => edit_task_popup(temp_div.id);
                     let temp_color = temp_obj[i]['color'];
                     if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
-                    else { temp_div.style.border = 'solid ' + '#' + temp_color; }
+                    else { temp_div.style.border = 'dotted ' + '#' + temp_color; }
                     // temp_div.style.borderColor = '#' + temp_obj[i]['color'];
                     // temp_div.style.borderStyle = 'dotted';
                     temp_div.innerText = temp_obj[i]['title'];
@@ -722,7 +722,7 @@ function draw_month(month, year) {
                         let temp_div = document.createElement('div');
                         let temp_color = temp_obj[i]['color'];
                         if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
-                        else { temp_div.style.border = 'solid ' + '#' + temp_color; }
+                        else { temp_div.style.border = 'dotted ' + '#' + temp_color; }
                         temp_div.id = rec_task_id;
                         temp_div.onclick = () => edit_task_popup(temp_div.id);
                         // temp_div.style.borderColor = '#' + temp_obj[i]['color'];
@@ -786,7 +786,7 @@ function draw_month(month, year) {
                 let temp_div = document.createElement('div');
                 let temp_color = temp_obj[i]['color'];
                 if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
-                else { temp_div.style.border = 'solid ' + '#' + temp_color; }
+                else { temp_div.style.border = 'dotted ' + '#' + temp_color; }
                 temp_div.id = temp_obj[i]['_id'] + ',' + temp_date_start.toISOString().slice(0, -5) + ',' + temp_date_end.toISOString().slice(0, -5);
                 temp_div.onclick = () => edit_task_popup(temp_div.id);
                 // temp_div.style.borderColor = '#' + temp_obj[i]['color'];
@@ -855,7 +855,7 @@ function draw_month(month, year) {
                         let temp_div = document.createElement('div');
                         let temp_color = temp_obj[i]['color'];
                         if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
-                        else { temp_div.style.border = 'solid ' + '#' + temp_color; }
+                        else { temp_div.style.border = 'dotted ' + '#' + temp_color; }
                         temp_div.id = rec_task_id;
                         temp_div.onclick = () => edit_task_popup(temp_div.id);
                         // temp_div.style.borderColor = '#' + temp_obj[i]['color'];
@@ -1200,10 +1200,10 @@ id_button_task_update_submit.onclick=async function () {
         let date_end = null;
         let date_start = null;
         if (id_form_dateend.value !== "") {
-            date_end = new Date(id_form_dateend.value).toISOString();
+            date_end = new Date(id_form_dateend.value).toISOString().slice(0, -5);
         }
         if (id_form_datestart.value !== "") {
-             date_start = new Date(id_form_datestart.value).toISOString();
+             date_start = new Date(id_form_datestart.value).toISOString().slice(0, -5);
         }
         // handle any dates in repeat
         let repeat_vals = convert_date_strings_to_local(id_form_repeat.value, false);
