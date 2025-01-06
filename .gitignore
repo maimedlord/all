@@ -1,4 +1,5 @@
 .idea
 .venv
-/static/images
 /static/downloads
+/static/images
+tv2_config.py
