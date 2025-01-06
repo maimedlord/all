@@ -56,8 +56,9 @@
 .calendar_month_day {
     border: black solid 1px;
     font-size: x-small;
-    min-height: 120px;
+    min-height: 160px;
     padding: 2px;
+    text-align: center;
     width: 100%;
 }
 .calendar_month_day_next_month {
