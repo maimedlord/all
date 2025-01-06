@@ -745,7 +745,7 @@ function draw_month(month, year) {
                 // when viewing months that this does not apply too
                 if (!day_element) { continue; }
                 let too_late = false;
-                if (rec_tasks.length > 0) {
+                if (rec_tasks.length > 0) {// has recordedTasks
                     // find the most recent recordedTask that has been completed
                     let most_recent_id = '';
                     for (let ii = 0; ii < rec_tasks.length; ii++) {
@@ -774,13 +774,20 @@ function draw_month(month, year) {
                         }
                     }
                 }
-                else {
+                else {// no recordedTasks
+                    console.log('no recordedTasks');
                     let out_date = new Date(start_date_utc);
                     out_date.setDate(out_date.getDate() + parseInt(repeat_values[1]));
                     if (temp_date_start > out_date) { too_late = true; }
                     if (!too_late && out_date < bottom_right_day_lol) {
                         day_element = document.getElementById(out_date.getFullYear() + '-' + (out_date.getMonth() + 1) + '-' + out_date.getDate().toString());
                     }
+                    // if (!too_late) {
+                    //     if (out_date < bottom_right_day_lol) {
+                    //         day_element = document.getElementById(out_date.getFullYear() + '-' + (out_date.getMonth() + 1) + '-' + out_date.getDate().toString());
+                    //     }
+                    //     else { break; }// the trigger task is due not in this month so break out of this task loop
+                    // }
                 }
                 // write task
                 let temp_div = document.createElement('div');
