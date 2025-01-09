@@ -9,7 +9,7 @@
 {#  popup div for creating a task  #}
     <div class="popup" id="task_create_container">
         <div class="close_confirm_container">
-            <div class="button button_close_x" onclick="close_popups()">x</div>
+            <div class="button_close_x" onclick="close_popups()">x</div>
         </div>
         <div class="popup" id="task_create_error_message">
             the title cannot be blank
@@ -53,13 +53,13 @@
             <label for="create_task_text">text:</label><br>
             <input class="input_field_text" id="create_task_text" name="create_task_text"  type="text">
             <br>
-            <button type="button" id="button_task_create_submit">create task</button>
+            <div class="button" id="button_task_create_submit">create task</div>
         </form>
     </div>
 {#  popup div for confirming deleting a task #}
     <div class="popup" id="task_confirm_delete_container">
         <div class="close_confirm_container">
-            <div class="button button_close_x" onclick="close_popups()">x</div>
+            <div class="button_close_x" onclick="close_popups()">x</div>
         </div>
         Are you sure you want to delete the task?
         <br>
@@ -71,11 +71,11 @@
 {#  popup div for editing a task  #}
     <div class="popup" id="task_edit_container">
         <div class="close_confirm_container">
-            <div class="button button_close_x" onclick="close_popups()">x</div>
+            <div class="button_close_x" onclick="close_popups()">x</div>
         </div>
         <div id="task_one_or_series">
-            <span id="task_choose_one">edit this task</span>
-            <span id="task_choose_series">edit the master/series</span>
+            <span class="button" id="task_choose_one">edit this task instance</span>
+            <span class="button" id="task_choose_series">edit the master/series</span>
         </div>
         <div id="task_edit_one">
             <div class="popup" id="t_update_error_message">
@@ -114,8 +114,8 @@
                 <label for="update_t_note">note:</label><br>
                 <input class="input_field_text" id="update_t_note" name="update_t_note"  type="text">
                 <div id="edit_t_buttons">
-                    <button type="button" id="button_t_delete_submit">delete recordedTask</button>
-                    <button type="button" id="button_t_update_submit">update recordedTask</button>
+                    <div class="button" id="button_t_delete_submit">delete recordedTask</div>
+                    <div class="button" id="button_t_update_submit">update recordedTask</div>
                 </div>
             </form>
         </div>
@@ -141,6 +141,7 @@
                 <i>comma delimited six-char reminders: nnnnvv: EX 0005hr, 0035mn, 0001wk, 0003mt</i><br>
                 <input id="update_task_reminder" name="update_task_reminder" type="text"><br>
                 <label for="update_task_repeat">repeat:</label><br>
+                <i>date: YYYY-MM-DDTHH:MM:S - time is optional</i><br>
                 <i>daily,n,date|n|never</i><br>
                 <i>weekly,n,date|n|never,thee-char-days-of-week-'-'-delimited</i><br>
                 <i>monthly,n,date|n|never,days-of-month-'-'-delimited,bool</i><br>
@@ -159,43 +160,48 @@
                 <label for="update_task_text">text:</label><br>
                 <input class="input_field_text" id="update_task_text" name="update_task_text"  type="text">
                 <br>
-                <button type="button" id="button_task_update_submit">update task</button>
+                <div class="button" id="button_task_update_submit">update task</div>
             </form>
         </div>
     </div>
 
 {#  ...  #}
-    <div id="tasks_menu">
-        <div class="button" id="button_create">create</div>
-        <div>
-            sort by:
-            <select id="select_sort_by" name="select_sort_by" title="select_sort_by">
-                <option disabled selected value="">sort by...</option>
-                <option value="datecreated,0">date created ascending</option>
-                <option value="datecreated,1">date created descending</option>
-                <option value="datestart,0">date start ascending</option>
-                <option value="datestart,1">date start descending</option>
-                <option value="dateend,0">date end ascending</option>
-                <option value="dateend,1">date end descending</option>
-                <option value="intensity,0">intensity ascending</option>
-                <option value="intensity,1">intensity descending</option>
-                <option value="recordedtasksnum,0">number of recordedTasks ascending</option>
-                <option value="recordedtasksnum,1">number of recordedTasks descending</option>
-                <option value="priority,0">priority ascending</option>
-                <option value="priority,1">priority descending</option>
-                <option value="textlength,0">text length ascending</option>
-                <option value="textlength,1">text length descending</option>
-                <option value="title,0">title ascending</option>
-                <option value="title,1">title descending</option>
-            </select>
-        </div>
-    </div>
+
     <div id="calendar_container">
         <div id="calendar_menu">
-            <div class="button" id="button_month_next">next month</div>
-            <div class="button" id="button_month_prev">previous month</div>
+            <div id="tasks_menu">
+                <div class="button" id="button_create">create</div>
+                <div class="row10">
+                    <input class="input_field_text" id="find_tasks_by_text" name="find_tasks_by_text" placeholder="filter by title/tag..." title="find_tasks_by_text">
+                    <span id="clear_find_tasks_by_text">clear</span>
+                </div>
+                <div class="row10">
+                    sort:
+                    <select id="select_sort_by" name="select_sort_by" title="select_sort_by">
+                        <option disabled selected value="">sort by...</option>
+                        <option value="datecreated,0">date created ascending</option>
+                        <option value="datecreated,1">date created descending</option>
+                        <option value="datestart,0">date start ascending</option>
+                        <option value="datestart,1">date start descending</option>
+                        <option value="dateend,0">date end ascending</option>
+                        <option value="dateend,1">date end descending</option>
+                        <option value="intensity,0">intensity ascending</option>
+                        <option value="intensity,1">intensity descending</option>
+                        <option value="recordedtasksnum,0">number of recordedTasks ascending</option>
+                        <option value="recordedtasksnum,1">number of recordedTasks descending</option>
+                        <option value="priority,0">priority ascending</option>
+                        <option value="priority,1">priority descending</option>
+                        <option value="textlength,0">text length ascending</option>
+                        <option value="textlength,1">text length descending</option>
+                        <option value="title,0">title ascending</option>
+                        <option value="title,1">title descending</option>
+                    </select>
+                </div>
+            </div>
+            <div class="button" id="button_month_next">next</div>
+            <div class="button" id="button_month_prev">previous</div>
             <div> - </div>
-            <div class="button" id="button_month_now">current month</div>
+            <div class="button" id="button_month_now">current</div>
             <div> - </div>
             <div id="choose_month">
                 go to:

@@ -25,6 +25,8 @@ let id_task_edit_series = document.getElementById('task_edit_series');
 let id_task_update_error_message = document.getElementById('task_update_error_message');
 let id_tasks_container = document.getElementById('tasks_container');
 let id_select_sort_by = document.getElementById('select_sort_by');
+let id_find_tasks_by_text = document.getElementById('find_tasks_by_text');
+let id_clear_find_tasks_by_text = document.getElementById('clear_find_tasks_by_text');
 
 // calendar variables
 let cal_now_month = new Date().getMonth();
@@ -269,6 +271,7 @@ async function get_tasks() {
             task_container.dataset.datestart = TASKS_OBJ['data'][i]['dateStart'];
             task_container.dataset.priority = TASKS_OBJ['data'][i]['priority'];
             task_container.dataset.recordedtasksnum = TASKS_OBJ['data'][i]['recordedTasks'].length;
+            task_container.dataset.tags = TASKS_OBJ['data'][i]['tags'].join(',');
             task_container.dataset.textlength = TASKS_OBJ['data'][i]['text'].length;
             task_container.dataset.title = TASKS_OBJ['data'][i]['title'];
             task_container.innerHTML = `
@@ -446,7 +449,7 @@ function set_cal_month_next(month, year) {
 
 // RETURNS ???
 function set_cal_month_prev(month, year) {
-    if (month === 1) {
+    if (month === 0) {
         cal_now_month = 11;
         cal_now_year = --year;
     }
@@ -485,6 +488,19 @@ function draw_month(month, year) {
                 temp_day_div.className += 'calendar_month_day';
                 temp_day_div.dataset.col = col.toString();
                 temp_day_div.dataset.row = row.toString();
+                // handle rounded month view corners
+                if (col === 0 && row === 0) {
+                    temp_day_div.className += ' calendar_month_day_corner_top_left';
+                }
+                else if (col === 6 && row === 0) {
+                    temp_day_div.className += ' calendar_month_day_corner_top_right';
+                }
+                else if (col === 0 && row === getWeeksInMonth(curr_m_firstMoment) - 1) {
+                    temp_day_div.className += ' calendar_month_day_corner_bottom_left';
+                }
+                else if (col === 6 && row === getWeeksInMonth(curr_m_firstMoment) - 1) {
+                    temp_day_div.className += ' calendar_month_day_corner_bottom_right';
+                }
                 temp_day_div.textContent += WEEK_PRINT_ARRAY[col] + ' ';
                 // handle previous month
                 if (this_day < curr_m_firstMoment) {
@@ -740,12 +756,16 @@ function draw_month(month, year) {
                 temp_date_end.setSeconds(0);
                 let temp_date_start = new Date();
                 temp_date_start.setSeconds(0);
+                //
+                let out_date = new Date(start_date_utc);
+                out_date.setDate(out_date.getDate() + parseInt(repeat_values[1]));
                 // set day_element id to now and re-assign it if complete recordedTasks found
-                let day_element = document.getElementById(temp_date_start.getFullYear() + '-' + (temp_date_start.getMonth() + 1) + '-' + temp_date_start.getDate().toString());
+                // let day_element = document.getElementById(temp_date_start.getFullYear() + '-' + (temp_date_start.getMonth() + 1) + '-' + temp_date_start.getDate().toString());
+                let day_element = document.getElementById(out_date.getFullYear() + '-' + (out_date.getMonth() + 1) + '-' + out_date.getDate().toString());
                 // when viewing months that this does not apply too
                 if (!day_element) { continue; }
                 let too_late = false;
-                if (rec_tasks.length > 0) {
+                if (rec_tasks.length > 0) {// has recordedTasks
                     // find the most recent recordedTask that has been completed
                     let most_recent_id = '';
                     for (let ii = 0; ii < rec_tasks.length; ii++) {
@@ -774,12 +794,18 @@ function draw_month(month, year) {
                         }
                     }
                 }
-                else {
-                    let out_date = new Date(start_date_utc);
-                    out_date.setDate(out_date.getDate() + parseInt(repeat_values[1]));
+                else {// no recordedTasks
+                    // let out_date = new Date(start_date_utc);
+                    // out_date.setDate(out_date.getDate() + parseInt(repeat_values[1]));
                     if (temp_date_start > out_date) { too_late = true; }
-                    if (!too_late && out_date < bottom_right_day_lol) {
-                        day_element = document.getElementById(out_date.getFullYear() + '-' + (out_date.getMonth() + 1) + '-' + out_date.getDate().toString());
+                    // if (!too_late && out_date < bottom_right_day_lol) {
+                    //     day_element = document.getElementById(out_date.getFullYear() + '-' + (out_date.getMonth() + 1) + '-' + out_date.getDate().toString());
+                    // }
+                    if (!too_late) {
+                        if (out_date < bottom_right_day_lol) {
+                            day_element = document.getElementById(out_date.getFullYear() + '-' + (out_date.getMonth() + 1) + '-' + out_date.getDate().toString());
+                        }
+                        else { continue; }// the trigger task is due not in this month so skip rest of loop
                     }
                 }
                 // write task
@@ -1266,6 +1292,47 @@ id_choose_month_input.addEventListener('change', () => {
     }
 });
 
+id_clear_find_tasks_by_text.onclick=function () {
+    id_find_tasks_by_text.value = '';
+    let visible_obss = Array.from(id_tasks_container.childNodes);
+    for (let i = 0; i < visible_obss.length; i++) {
+        visible_obss[i].style.display = 'flex';
+    }
+    id_tasks_container.innerHTML = '';
+    for (let i = 0; i < visible_obss.length; i++) {
+        id_tasks_container.appendChild(visible_obss[i]);
+    }
+}
+
+id_find_tasks_by_text.onkeyup =function () {
+    let visible_obss = Array.from(id_tasks_container.childNodes);
+    for (let i = 0; i < visible_obss.length; i++) {
+        let reason_to_flex = false;
+        let temp_val_array = id_find_tasks_by_text.value.toLowerCase().split(',');
+        let compare_array = visible_obss[i].dataset.tags.toLowerCase().split(',');
+        compare_array.push(visible_obss[i].dataset.title.toLowerCase());
+        // whoa really?
+        for (let j = 0; j < temp_val_array.length; j++) {
+            for (let k = 0; k < compare_array.length; k++) {
+                if (compare_array[k].includes(temp_val_array[j])) {
+                    reason_to_flex = true;
+                    break;
+                }
+                // if (temp_val_array[j].includes(compare_array[k])) {
+                //     reason_to_flex = true;
+                //     break;
+                // }
+            }
+        }
+        if (reason_to_flex) { visible_obss[i].style.display = 'flex'; }
+        else { visible_obss[i].style.display = 'none'; }
+    }
+    id_tasks_container.innerHTML = '';
+    for (let i = 0; i < visible_obss.length; i++) {
+        id_tasks_container.appendChild(visible_obss[i]);
+    }
+}
+
 id_select_sort_by.addEventListener('change', () => {
     try {
         // Exit if no sort selected or no change made to sort
@@ -1302,9 +1369,7 @@ id_task_choose_series.onclick = function () {
 // ???
 window.onload=function () {
     get_tasks()
-        .then(() => {
-            view_configs_get('tasks');
-        })
+        .then(() => { return view_configs_get('tasks'); })
         .then(() => {
             view_apply();
             // sort tasks

@@ -1,15 +1,13 @@
-.button {
-    border: black 1px solid;
-    box-shadow: black 2px 2px;
-    text-align: center;
-    width: 90px;
-}
-.button:active {
-    box-shadow: dimgray -2px -2px;
-}
-.button_create {
+/*.button {*/
+/*    border: black 1px solid;*/
+/*    box-shadow: black 2px 2px;*/
+/*    text-align: center;*/
+/*    width: 90px;*/
+/*}*/
+/*.button:active {*/
+/*    box-shadow: dimgray -2px -2px;*/
+/*}*/
 
-}
 .button_delete {
     background-color: red;
     color: white;
@@ -35,12 +33,12 @@
     flex-direction: row-reverse;
     width: 100%;
 }
-.button_close_x {
-    border: black 1px solid;
-    box-shadow: black 2px 2px;
-    padding: 4px;
-    width: 15px ;
-}
+/*.button_close_x {*/
+/*    border: black 1px solid;*/
+/*    box-shadow: black 2px 2px;*/
+/*    padding: 4px;*/
+/*    width: 15px ;*/
+/*}*/
 #form_create_note {
     width: 100%;
 }

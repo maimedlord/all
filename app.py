@@ -621,6 +621,7 @@ def tv2_api_view_get(target):
 @login_required
 def tv2_api_view_update(view_obj):
     try:
+        print('api_view_update' + view_obj)
         response = tv2_db.view_update(current_user.id_str, json.loads(view_obj))
         if response:
             if response:

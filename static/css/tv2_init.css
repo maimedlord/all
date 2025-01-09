@@ -1,8 +1,45 @@
 body {
-    /*background-color: rgb(240, 240, 240);*/
+    background-color: rgb(44, 44, 44);
+    color: white;
     height: 100%;
     width: 100%;
 }
+.button {
+    background-color: rgb(255, 255, 255, .50);
+    border: black 1px solid;
+    border-radius: 5px;
+    box-shadow: white 2px 2px;
+    color: white;
+    min-width: 70px;
+    padding: 3px;
+    text-align: center;
+    text-shadow: black 1px 1px;
+}
+
+.button:active {
+    box-shadow: inset black 2px 2px;
+    font-weight: bold;
+}
+
+.button_close_x {
+    background-color: rgb(255, 255, 255, .50);
+    border: black 1px solid;
+    border-radius: 5px;
+    box-shadow: white 2px 2px;
+    color: white;
+    font-weight: bold;
+    font-size: larger;
+    padding: 4px;
+    text-align: center;
+    text-shadow: black 1px 1px;
+    width: 15px ;
+}
+.button_close_x:active {
+    box-shadow: inset black 2px 2px;
+    font-weight: bold;
+}
+
+
 .err_message {
 
 }
@@ -11,13 +48,25 @@ body {
 }
 #nav {
     align-items: center;
-    /*background-color: darkgrey;*/
+    color: white;
     display: flex;
     flex-direction: row;
     gap: 20px;
     justify-content: center;
     width: 100%;
 }
+#nav a {
+    color: white;
+    font-size: larger;
+    text-decoration: none;
+}
+#nav a:hover {
+    color: rgb(255, 255, 255, .50);
+}
+#nav a:active {
+    color: rgb(255, 255, 255, .75);
+}
+
 .row10 {
     display: flex;
     flex-direction: row;
@@ -29,4 +78,7 @@ body {
     flex-direction: row-reverse;
     gap: 10px;
     /*width: 100%;*/
+}
+.width100 {
+    width: 100%;
 }

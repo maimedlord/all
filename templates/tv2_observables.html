@@ -9,7 +9,7 @@
 {#  popup div for creating an observable  #}
     <div class="popup" id="obs_create_container">
         <div class="close_confirm_container">
-            <div class="button button_close_x" onclick="close_popups()">x</div>
+            <div class="button_close_x" onclick="close_popups()">x</div>
         </div>
         <div class="popup" id="obs_create_error_message">
             the title cannot be blank
@@ -34,7 +34,7 @@
 {#  popup div for confirming deleting an observable #}
     <div class="popup" id="obs_confirm_delete_container">
         <div class="close_confirm_container">
-            <div class="button button_close_x" onclick="close_popups()">x</div>
+            <div class="button_close_x" onclick="close_popups()">x</div>
         </div>
         Are you sure you want to delete the observable?
         <br>
@@ -46,13 +46,13 @@
 {#  popup div for observing an observable #}
     <div class="popup" id="observe_obs_container">
         <div class="close_confirm_container">
-            <div class="button button_close_x" onclick="close_popups()">x</div>
+            <div class="button_close_x" onclick="close_popups()">x</div>
         </div>
         <div id="observe_obs_title"></div>
         <form id="form_observe_obs" name="form_observe_obs">
             <input id="observe_obs_id" name="observe_obs_id" type="hidden">
             <label for="observe_obs_color">color:</label><br>
-            <input id="observe_obs_color" name="observe_obs_color" type="color"><br>
+            <input id="observe_obs_color" name="observe_obs_color" type="color" value="#ffffff"><br>
             <label for="observe_obs_intensity">intensity:</label><br>
             <input id="observe_obs_intensity" max="100" min="0" name="observe_obs_intensity"  type="number"><br>
             <label for="observe_obs_feeling_before">feeling before:</label><br>
@@ -78,7 +78,7 @@
 {#  popup div for editing a obs  #}
     <div class="popup" id="update_obs_container">
         <div class="close_confirm_container">
-            <div class="button button_close_x" onclick="close_popups()">x</div>
+            <div class="button_close_x" onclick="close_popups()">x</div>
         </div>
         <div class="popup" id="obs_update_error_message">
             the title cannot be blank
@@ -104,7 +104,7 @@
 {#  popup div for editing a recorded observable  #}
     <div class="popup" id="update_rec_obs_container">
          <div class="close_confirm_container">
-            <div class="button button_close_x" onclick="close_popups()">x</div>
+            <div class="button_close_x" onclick="close_popups()">x</div>
         </div>
         <form id="form_update_recorded_obs" name="form_update_recorded_obs">
             <input id="update_rec_obs_id" name="update_rec_obs_id" type="hidden">
@@ -159,7 +159,7 @@
         </div>
         <div class="row10">
             <label for="find_obs_by_text"></label>
-            <input class="input_field_text" id="find_obs_by_text" name="find_obs_by_text" type="text" placeholder="find obs by title/tag...">
+            <input class="input_field_text" id="find_obs_by_text" name="find_obs_by_text" type="text" placeholder="filter by title/tag...">
             <span id="clear_find_obs_by_text">clear</span>
         </div>
     </div>

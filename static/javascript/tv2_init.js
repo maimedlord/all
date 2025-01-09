@@ -7,10 +7,7 @@ function is_all_digits(str) {
 }
 
 function view_apply() {
-    if (!VIEWS_OBJ) {
-        console.log('VIEWS_OBJ is false');
-        return;
-    }
+    if (!VIEWS_OBJ) { return; }
     let object_keys = Object.keys(VIEWS_OBJ);
     for (let i = 0; i < object_keys.length; i++) {
         let temp_doc = document.getElementById(object_keys[i]);
@@ -34,8 +31,6 @@ async function view_configs_get(target) {
         // Parse the JSON data from the response
         const data = await response.json();
         VIEWS_OBJ = data.data;
-        console.log('views object assigned');
-        console.log(VIEWS_OBJ);
         // return true;
     } catch (error) {
         // Handle errors

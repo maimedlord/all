@@ -1,86 +1,114 @@
-.button {
-    background-color: gainsboro;
-    border: black 1px solid;
-    box-shadow: black 2px 2px;
-    text-align: center;
-    width: 90px;
-}
-.button:active {
-    box-shadow: dimgray -2px -2px;
-}
 .button_create {
 
 }
+
 .button_delete {
     background-color: red;
     color: white;
     height: 20px;
     margin: 4px 4px 0px 0px;
 }
-.button_edit {
-    margin: 4px 4px 0px 0px;
-}
+
 #button_delete_no {
     background-color: red;
     color: white;
     width: 40px;
 }
+
 #button_delete_yes {
     background-color: green;
     color: white;
     width: 40px;
 }
-.button_close_x {
-    border: black 1px solid;
-    box-shadow: black 2px 2px;
-    padding: 4px;
-    width: 15px ;
+
+.button_edit {
+    margin: 4px 4px 0px 0px;
 }
+
+#button_task_create_submit {
+    background-color: rgb(0, 255, 25, 0.50);
+    margin: 10px auto 5px auto;
+    width: 80px;
+}
+
 #button_t_delete_submit {
     display: none;
 }
+
+#button_t_update_submit {
+    background-color: rgb(0, 255, 25, 0.50);
+    margin: 10px auto 5px auto;
+}
+
 #calendar_container {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
+
 #calendar_menu {
     align-items: center;
     display: flex;
     flex-direction: row-reverse;
+    flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
     margin: 10px;
     width: 100%;
 }
+
 .calendar_month_day {
-    border: black solid 1px;
-    font-size: x-small;
+    background-color: rgb(255, 255, 255, 0.05);
+    border: rgb(255, 255, 255, 0.65) solid 1px;
+    font-size: small;
     min-height: 160px;
+    overflow: hidden;
     padding: 2px;
     text-align: center;
     width: 100%;
 }
+
+.calendar_month_day_corner_top_left {
+    border-top-left-radius: 10px;
+}
+
+.calendar_month_day_corner_top_right {
+    border-top-right-radius: 10px;
+}
+
+.calendar_month_day_corner_bottom_left {
+    border-bottom-left-radius: 10px;
+}
+
+.calendar_month_day_corner_bottom_right {
+    border-bottom-right-radius: 10px;
+}
+
 .calendar_month_day_next_month {
-    background-color: rgb(210, 210, 210);
+    background-color: rgb(255, 255, 255, 0.12);
     border: black solid 1px;
-    font-size: x-small;
+    font-size: smaller;
     min-height: 90px;
+    overflow: hidden;
     padding: 2px;
     width: 100%;
 }
+
 .calendar_month_day_prev_month {
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(255, 255, 255, 0.12);
     border: black solid 1px;
-    font-size: x-small;
+    font-size: smaller;
     min-height: 90px;
+    overflow: hidden;
     padding: 2px;
     width: 100%;
 }
+
 .calendar_month_week {
     display: flex;
     flex-direction: row;
 }
+
 #calendar_title {
     align-items: center;
     display: flex;
@@ -89,13 +117,39 @@
     text-align: center;
     width: 100%;
 }
+
 #calendar_view {
     margin: auto;
     width: 95%;
 }
+
 #choose_month_go_input {
     text-decoration: underline;
+    font-style: italic;
 }
+
+#choose_month_go_input:active {
+    color: rgb(255, 255, 255, .75);
+}
+
+#choose_month_go_input:hover {
+    color: rgb(255, 255, 255, .50);
+}
+
+#clear_find_tasks_by_text {
+    text-decoration: underline;
+    font-style: italic;
+    display: inline;
+}
+
+#clear_find_tasks_by_text:active {
+    color: rgb(255, 255, 255, .75);
+}
+
+#clear_find_tasks_by_text:hover {
+    color: rgb(255, 255, 255, .50);
+}
+
 .close_confirm_container {
     align-items: center;
     display: flex;
@@ -104,57 +158,88 @@
     margin-bottom: 10px;
     width: 100%;
 }
+
 #edit_t_buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     padding: 5px;
 }
+
 #form_update_t {
     width: 100%;
 }
+
 .input_field_text {
     width: 95%;
 }
+
 #menu_confirm_delete_container {
     align-items: center;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    width: 100%;
 }
+
 #task_choose_one {
-    border: black solid 1px;
+    /*border: black solid 1px;*/
     text-align: center;
-    width: 50%;
 }
+
 #task_choose_series {
-    border: black solid 1px;
+    /*border: black solid 1px;*/
     text-align: center;
-    width: 50%;
 }
-#task_create_container {
+
+#task_confirm_delete_container {
+    align-items: center;
+    background-color: rgb(35, 35, 35, 0.85);
     border: black 1px solid;
-    cursor: grab;
+    box-shadow: black 2px 2px;
     display: none;
     flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    left: 50%;               /* Centers the div horizontally */
+    min-width: 400px;
+    padding: 5px;
     position: fixed;         /* Locks the div in place, even when scrolling */
     top: 50%;                  /* Aligns the div at the top of the viewport */
-    left: 50%;               /* Centers the div horizontally */
     transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
-    background-color: #f0f0f0;
-    box-shadow: black 2px 2px;
-    padding: 5px;
     z-index: 1000;
-    width: 60%;
 }
+
 .task_container {
     border: black 3px solid;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     margin-top: 10px;
     max-width: 500px;
-    /*padding: 5px;*/
+    padding: 5px;
 }
+
+#task_create_container {
+    align-items: center;
+    background-color: rgb(35, 35, 35, 0.85);
+    border: black 1px solid;
+    box-shadow: black 2px 2px;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    left: 50%;               /* Centers the div horizontally */
+    min-width: 400px;
+    padding: 5px;
+    position: fixed;         /* Locks the div in place, even when scrolling */
+    top: 50%;                  /* Aligns the div at the top of the viewport */
+    transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
+    z-index: 1000;
+}
+
 #task_create_error_message {
     align-items: center;
     background-color: red;
@@ -167,37 +252,48 @@
     text-align: center;
     width: 100%;
 }
+
 #task_edit_container {
+    align-items: center;
+    background-color: rgb(35, 35, 35, 0.85);
     border: black 1px solid;
+    box-shadow: black 2px 2px;
     display: none;
     flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    left: 50%;               /* Centers the div horizontally */
+    min-width: 400px;
+    padding: 5px;
     position: fixed;         /* Locks the div in place, even when scrolling */
     top: 50%;                  /* Aligns the div at the top of the viewport */
-    left: 50%;               /* Centers the div horizontally */
     transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
-    background-color: #f0f0f0;
-    box-shadow: black 2px 2px;
-    padding: 5px;
     z-index: 1000;
-    width: 500px;
 }
+
 #task_edit_one {
     display: flex;
+    width: 100%;
 }
+
 #task_edit_series {
     display: none;
+    width: 100%;
 }
+
 .task_menu {
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
 }
+
 #task_one_or_series {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%
 }
+
 #task_update_error_message {
     align-items: center;
     background-color: red;
@@ -210,6 +306,7 @@
     text-align: center;
     width: 100%;
 }
+
 #tasks_container {
     display: flex;
     flex-direction: row;
@@ -218,6 +315,7 @@
     justify-content: center;
     padding: 30px;
 }
+
 #tasks_menu {
     align-items: center;
     display: flex;
@@ -225,21 +323,4 @@
     gap: 20px;
     justify-content: center;
     margin: 10px;
-}
-#task_confirm_delete_container {
-    border: black 1px solid;
-    display: none;
-    flex-direction: column;
-    position: fixed;         /* Locks the div in place, even when scrolling */
-    top: 50%;                  /* Aligns the div at the top of the viewport */
-    left: 50%;               /* Centers the div horizontally */
-    transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
-    background-color: #f0f0f0;
-    box-shadow: black 2px 2px;
-    padding: 5px;
-    z-index: 1000;
-    width: 400px;
-}
-#tasks_menu {
-    width: 100%;
 }
