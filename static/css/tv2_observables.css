@@ -28,12 +28,21 @@
     color: white;
     width: 40px;
 }
-/*.button_close_x {*/
-/*    border: black 1px solid;*/
-/*    box-shadow: black 2px 2px;*/
-/*    padding: 4px;*/
-/*    width: 15px ;*/
-/*}*/
+#button_obs_create_submit {
+    background-color: rgb(0, 255, 25, 0.50);
+    margin: 0 auto 5px auto;
+    width: 120px;
+}
+#button_obs_update_submit {
+    background-color: rgb(0, 255, 25, 0.50);
+    margin: 0 auto 5px auto;
+    width: 80px;
+}
+#button_update_rec_obs_submit {
+    background-color: rgb(0, 255, 25, 0.50);
+    margin: 0 auto 5px auto;
+    width: 160px;
+}
 #clear_find_obs_by_text {
     text-decoration: underline;
     font-style: italic;
@@ -50,6 +59,15 @@
 .input_field_text {
     width: 95%;
 }
+#form_create_obs {
+    width: 100%
+}
+#form_update_recorded_obs {
+    width: 100%
+}
+#form_update_obs {
+    width: 100%
+}
 .obs_container {
     border: 2px solid;
     border-radius: 5px;
@@ -62,33 +80,38 @@
     overflow-wrap: anywhere;
 }
 #obs_confirm_delete_container {
+    align-items: center;
+    background-color: rgb(35, 35, 35, 0.85);
     border: black 1px solid;
+    box-shadow: black 2px 2px;
     display: none;
     flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    left: 50%;               /* Centers the div horizontally */
+    min-width: 400px;
+    padding: 5px;
     position: fixed;         /* Locks the div in place, even when scrolling */
     top: 50%;                  /* Aligns the div at the top of the viewport */
-    left: 50%;               /* Centers the div horizontally */
     transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
-    background-color: #f0f0f0;
-    box-shadow: black 2px 2px;
-    padding: 5px;
     z-index: 1000;
-    width: 400px;
 }
 #obs_create_container {
+    align-items: center;
+    background-color: rgb(35, 35, 35, 0.85);
     border: black 1px solid;
-    cursor: grab;
+    box-shadow: black 2px 2px;
     display: none;
     flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    left: 50%;               /* Centers the div horizontally */
+    min-width: 400px;
+    padding: 5px;
     position: fixed;         /* Locks the div in place, even when scrolling */
     top: 50%;                  /* Aligns the div at the top of the viewport */
-    left: 50%;               /* Centers the div horizontally */
     transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
-    background-color: #f0f0f0;
-    box-shadow: black 2px 2px;
-    padding: 5px;
     z-index: 1000;
-    width: 60%;
 }
 #obs_create_error_message {
     align-items: center;
@@ -103,19 +126,21 @@
     width: 100%;
 }
 #observe_obs_container {
+    align-items: center;
+    background-color: rgb(35, 35, 35, 0.85);
     border: black 1px solid;
-    cursor: grab;
+    box-shadow: black 2px 2px;
     display: none;
     flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    left: 50%;               /* Centers the div horizontally */
+    min-width: 400px;
+    padding: 5px;
     position: fixed;         /* Locks the div in place, even when scrolling */
     top: 50%;                  /* Aligns the div at the top of the viewport */
-    left: 50%;               /* Centers the div horizontally */
     transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
-    background-color: #f0f0f0;
-    box-shadow: black 2px 2px;
-    padding: 5px;
-    z-index: 600;
-    width: 60%;
+    z-index: 1000;
 }
 #observe_obs_title {
     align-items: center;
@@ -176,32 +201,36 @@
     width: 100%;
 }
 #update_obs_container {
+    align-items: center;
+    background-color: rgb(35, 35, 35, 0.85);
     border: black 1px solid;
-    cursor: grab;
+    box-shadow: black 2px 2px;
     display: none;
     flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    left: 50%;               /* Centers the div horizontally */
+    min-width: 400px;
+    padding: 5px;
     position: fixed;         /* Locks the div in place, even when scrolling */
     top: 50%;                  /* Aligns the div at the top of the viewport */
-    left: 50%;               /* Centers the div horizontally */
     transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
-    background-color: #f0f0f0;
-    box-shadow: black 2px 2px;
-    padding: 5px;
-    z-index: 600;
-    width: 60%;
+    z-index: 1000;
 }
 #update_rec_obs_container {
+    align-items: center;
+    background-color: rgb(35, 35, 35, 0.85);
     border: black 1px solid;
-    cursor: grab;
+    box-shadow: black 2px 2px;
     display: none;
     flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    left: 50%;               /* Centers the div horizontally */
+    min-width: 400px;
+    padding: 5px;
     position: fixed;         /* Locks the div in place, even when scrolling */
     top: 50%;                  /* Aligns the div at the top of the viewport */
-    left: 50%;               /* Centers the div horizontally */
     transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
-    background-color: #f0f0f0;
-    box-shadow: black 2px 2px;
-    padding: 5px;
-    z-index: 600;
-    width: 60%;
+    z-index: 1000;
 }

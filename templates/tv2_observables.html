@@ -28,7 +28,7 @@
             <i>children...</i><br>
             <i>parents...</i><br>
             <br>
-            <button type="button" id="button_obs_create_submit">create obs</button>
+            <div class="button" id="button_obs_create_submit">create obs</div>
         </form>
     </div>
 {#  popup div for confirming deleting an observable #}
@@ -72,7 +72,7 @@
             <label for="observe_obs_guests">guests:</label><br>
             <input class="input_field_text" id="observe_obs_guests" name="observe_obs_guests" type="text"><br>
             <br>
-            <button type="button" id="button_obs_observe_submit">observe obs</button>
+            <div class="button" id="button_obs_observe_submit">observe obs</div>
         </form>
     </div>
 {#  popup div for editing a obs  #}
@@ -98,7 +98,7 @@
             <i>children...</i><br>
             <i>parents...</i><br>
             <br>
-            <button type="button" id="button_obs_update_submit">update obs</button>
+            <div class="button" id="button_obs_update_submit">update obs</div>
         </form>
     </div>
 {#  popup div for editing a recorded observable  #}
@@ -130,15 +130,11 @@
             <label for="update_rec_obs_guests">guests:</label><br>
             <input class="input_field_text" id="update_rec_obs_guests" name="update_rec_obs_guests" type="text"><br>
             <br>
-            <button type="button" id="button_update_rec_obs_submit">update recorded observable</button>
+            <div class="button" id="button_update_rec_obs_submit">update recorded observable</div>
         </form>
     </div>
 {#  ...  #}
     <div id="obs_menu">
-        <div class="button" id="button_create">create</div>
-        <select id="select_obs_input" name="select_obs_input" title="select_obs_input">
-            <option disabled selected value="">observe...</option>
-        </select>
         <div>
             sort by:
             <select id="select_sort_by" name="select_sort_by" title="select_sort_by">
@@ -162,6 +158,10 @@
             <input class="input_field_text" id="find_obs_by_text" name="find_obs_by_text" type="text" placeholder="filter by title/tag...">
             <span id="clear_find_obs_by_text">clear</span>
         </div>
+        <select id="select_obs_input" name="select_obs_input" title="select_obs_input">
+            <option disabled selected value="">observe...</option>
+        </select>
+        <div class="button" id="button_create">create</div>
     </div>
 {#  ...  #}
     <div id="obss_container">
