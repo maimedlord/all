@@ -12,11 +12,14 @@
 .button_delete {
     background-color: red;
     color: white;
-    height: 20px;
-    margin: 4px 4px 0px 0px;
+    height: 15px;
+    margin: 4px 4px 0 0;
+    width: 50px;
 }
 .button_edit {
-    margin: 4px 4px 0px 0px;
+    height: 15px;
+    margin: 4px 4px 0 0;
+    width: 50px;
 }
 #button_delete_no {
     background-color: red;
@@ -29,6 +32,11 @@
     width: 40px;
 }
 #button_obs_create_submit {
+    background-color: rgb(0, 255, 25, 0.50);
+    margin: 0 auto 5px auto;
+    width: 120px;
+}
+#button_obs_observe_submit {
     background-color: rgb(0, 255, 25, 0.50);
     margin: 0 auto 5px auto;
     width: 120px;
@@ -62,11 +70,17 @@
 #form_create_obs {
     width: 100%
 }
+#form_observe_obs {
+    width: 100%;
+}
 #form_update_recorded_obs {
     width: 100%
 }
 #form_update_obs {
     width: 100%
+}
+.padding5 {
+    padding: 5px;
 }
 .obs_container {
     border: 2px solid;

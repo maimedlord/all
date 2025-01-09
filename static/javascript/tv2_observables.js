@@ -373,9 +373,9 @@ function show_recordedObss(obs_id) {
                 intensity: ${obs_obj.recordedObss[i].intensity}
                 text: ${obs_obj.recordedObss[i].text}`;
             let temp_div2 = document.createElement('div');
-            temp_div2.className = 'rrow10';
-            temp_div2.innerHTML += `<div class="button" onclick="delete_observed('${temp_div.id}')">delete</div>`
-            temp_div2.innerHTML += `<div class="button" onclick="edit_observed_popup('${temp_div.id}')">edit</div>`
+            temp_div2.className = 'rrow10 padding5';
+            temp_div2.innerHTML += `<div class="button button_delete" onclick="delete_observed('${temp_div.id}')">delete</div>`
+            temp_div2.innerHTML += `<div class="button button_edit" onclick="edit_observed_popup('${temp_div.id}')">edit</div>`
             temp_div.append(temp_div2);
             obs_container.append(temp_div);
         }
