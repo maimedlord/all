@@ -134,6 +134,8 @@
         </form>
     </div>
 {#  ...  #}
+    
+{#  ...  #}
     <div id="obs_menu">
         <div>
             sort by:
@@ -155,12 +157,14 @@
         </div>
         <div class="row10">
             <label for="find_obs_by_text"></label>
-            <input class="input_field_text" id="find_obs_by_text" name="find_obs_by_text" type="text" placeholder="filter by title/tag...">
+            <input id="find_obs_by_text" name="find_obs_by_text" type="text" placeholder="filter by title/tag...">
             <span id="clear_find_obs_by_text">clear</span>
         </div>
-        <select id="select_obs_input" name="select_obs_input" title="select_obs_input">
-            <option disabled selected value="">observe...</option>
-        </select>
+        <div class="row10">
+            <select id="select_obs_input" name="select_obs_input" title="select_obs_input">
+                <option disabled selected value="">observe...</option>
+            </select>
+        </div>
         <div class="button" id="button_create">create</div>
     </div>
 {#  ...  #}

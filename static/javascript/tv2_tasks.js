@@ -78,7 +78,7 @@ function convert_date_strings_to_local(input_string, plus_or_minus) {
         let return_string = input_string.split(',');
         for (let ii = 0; ii < return_string.length; ii++) {
             if (return_string[ii].includes('T')) {
-                return_string[ii] = new Date(new Date(return_string[ii] + 'Z') - OFFSET_AMT).toISOString().slice(0, -5);
+                return_string[ii] = new Date(new Date(return_string[ii] + 'Z') - OFFSET_AMT).toISOString().slice(0, -8);
             }
         }
         return return_string.join(',');
@@ -147,12 +147,12 @@ function edit_task_popup(task_id) {
         let temp_start_date = '';
         if (local_task['dateStart'] !== null) {
             temp_start_date = new Date(local_task['dateStart'] + 'Z');
-            temp_start_date = new Date(temp_start_date - LCL_OFFSET).toISOString().slice(0,-5);
+            temp_start_date = new Date(temp_start_date - LCL_OFFSET).toISOString().slice(0,-8);
         }
         let temp_end_date = '';
         if (local_task['dateEnd'] !== null) {
             temp_end_date = new Date(local_task['dateEnd'] + 'Z');
-            temp_end_date = new Date(temp_end_date - LCL_OFFSET).toISOString().slice(0,-5);
+            temp_end_date = new Date(temp_end_date - LCL_OFFSET).toISOString().slice(0,-8);
         }
         // take care of dates in repeat if there
         // true == forward in time
@@ -184,12 +184,12 @@ function edit_task_popup(task_id) {
         // NEED
         // handle UTC to local time conversion
         const local_start_date = new Date(new Date(id_and_dates[1] + 'Z') - LCL_OFFSET);
-        document.getElementById('update_t_datestart').value = local_start_date.toISOString().slice(0,-5);
+        document.getElementById('update_t_datestart').value = local_start_date.toISOString().slice(0,-8);
         // console.log('dateStart', local_start_date);
         // handle potential dateend nulls and then UTC to local time conversion
         if (id_and_dates[2] !== '') {
             const local_end_date = new Date(new Date(id_and_dates[2] + 'Z') - LCL_OFFSET);
-            document.getElementById('update_t_dateend').value = local_end_date.toISOString().slice(0,-5);
+            document.getElementById('update_t_dateend').value = local_end_date.toISOString().slice(0,-8);
         }
         else {
             document.getElementById('update_t_dateend').value = '';
@@ -277,9 +277,9 @@ async function get_tasks() {
             task_container.innerHTML = `
                 <div class="task_menu">
                     <div class="button button_delete" 
-                         onclick="confirm_delete_popup('${TASKS_OBJ['data'][i]['_id']}')">DELETE</div>
+                         onclick="confirm_delete_popup('${TASKS_OBJ['data'][i]['_id']}')">delete</div>
                     <div class="button button_edit" 
-                         onclick="edit_task_popup('${TASKS_OBJ['data'][i]['_id']}')">EDIT</div>
+                         onclick="edit_task_popup('${TASKS_OBJ['data'][i]['_id']}')">edit</div>
                 </div>
             `;
             // prep dates for timezone change
@@ -473,7 +473,7 @@ function draw_month(month, year) {
         const bottom_right_day_lol = new Date(this_day);
         bottom_right_day_lol.setDate(bottom_right_day_lol.getDate() + (getWeeksInMonth(curr_m) * 7) - 1);
         bottom_right_day_lol.setHours(23, 59, 59, 999);// set to end of the day
-
+        const now_date = new Date();
         // write month name
         id_calendar_title.innerText = new Date(year, month).toLocaleString('default', { month: 'long' }) + ': ' + year;
         id_calendar_view.innerHTML = ''; // wipe before re-drawing calendar
@@ -511,6 +511,10 @@ function draw_month(month, year) {
                     temp_day_div.className += ' calendar_month_day_next_month';
                 }
                 temp_day_div.id = this_day.getFullYear() + '-' + (this_day.getMonth() + 1) + '-' + this_day.getDate().toString();
+                if (temp_day_div.id === now_date.getFullYear() + '-' + (now_date.getMonth() + 1) + '-' + now_date.getDate().toString()) {
+                    temp_day_div.style.borderWidth = '4px';
+                    temp_day_div.style.borderColor = 'white';
+                }
                 temp_day_div.textContent += this_day.getDate().toString();
                 this_day.setDate(this_day.getDate() + 1);// moves this_day to the next date
                 temp_row_div.append(temp_day_div);
@@ -549,6 +553,7 @@ function draw_month(month, year) {
                     let day_element = document.getElementById(start_year + '-' + start_month + '-' + temp_start_date.getDate());
                     let temp_div = document.createElement('div');
                     let temp_color = temp_obj[i]['color'];
+                    // handle white colors. probably remove this?
                     if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
                     else { temp_div.style.border = 'solid ' + '#' + temp_color; }
                     temp_div.id = rec_tasks[ii]['id'];
@@ -637,9 +642,9 @@ function draw_month(month, year) {
                     // skip if task in series is before this month
                     if (temp_start_date < top_left_day_lol) { continue; }
                     // convert temp_end_date to string as rec_task_id assignment requires it
-                    if (temp_end_date) { temp_end_date = temp_end_date.toISOString().slice(0, -5); }
+                    if (temp_end_date) { temp_end_date = temp_end_date.toISOString().slice(0, -8); }
                     // skip drawing if in recordedTasks
-                    const rec_task_id = temp_obj[i]['_id'] + ',' + temp_start_date.toISOString().slice(0, -5) + ',' + temp_end_date;
+                    const rec_task_id = temp_obj[i]['_id'] + ',' + temp_start_date.toISOString().slice(0, -8) + ',' + temp_end_date;
                     const found_rTask = get_recordedTask(rec_task_id, temp_obj[i]['recordedTasks']);
                     if (found_rTask > -1) { continue; }
                     let month_day = temp_start_date.getDate();// should be local time?
@@ -725,9 +730,9 @@ function draw_month(month, year) {
                             }
                         }
                         // convert temp_end_date to string as rec_task_id assignment requires it
-                        if (temp_end_date) { temp_end_date = temp_end_date.toISOString().slice(0, -5); }
+                        if (temp_end_date) { temp_end_date = temp_end_date.toISOString().slice(0, -8); }
                         // skip drawing if in recordedTasks
-                        const rec_task_id = temp_obj[i]['_id'] + ',' + temp_start_date.toISOString().slice(0, -5)
+                        const rec_task_id = temp_obj[i]['_id'] + ',' + temp_start_date.toISOString().slice(0, -8)
                             + ',' + temp_end_date;
                         // console.log('rectaskid: ', rec_task_id);
                         const found_rTask = get_recordedTask(rec_task_id, temp_obj[i]['recordedTasks']);
@@ -750,73 +755,48 @@ function draw_month(month, year) {
             }
             /// handle trigger repeat
             else if (repeat_values[0] === 'trigger') {
-                // handle recordedTasks first
+                const days_skip = parseInt(repeat_values[1]);
+                // const now_date = new Date();
                 let rec_tasks = temp_obj[i]['recordedTasks'];
-                let temp_date_end = new Date();
-                temp_date_end.setSeconds(0);
-                let temp_date_start = new Date();
-                temp_date_start.setSeconds(0);
-                //
-                let out_date = new Date(start_date_utc);
-                out_date.setDate(out_date.getDate() + parseInt(repeat_values[1]));
-                // set day_element id to now and re-assign it if complete recordedTasks found
-                // let day_element = document.getElementById(temp_date_start.getFullYear() + '-' + (temp_date_start.getMonth() + 1) + '-' + temp_date_start.getDate().toString());
-                let day_element = document.getElementById(out_date.getFullYear() + '-' + (out_date.getMonth() + 1) + '-' + out_date.getDate().toString());
-                // when viewing months that this does not apply too
-                if (!day_element) { continue; }
+                let due_date = false;
+                // find last completed date
+                let last_completed = false;
+                for (let ii = 0; ii < rec_tasks.length; ii++) {
+                    if (!last_completed && rec_tasks[ii]['status'].includes('completed')) {
+                        // grab date from id
+                        last_completed = new Date(rec_tasks[ii]['id'].split(',')[1] + 'Z');// UTC
+                        continue;
+                    }
+                    if (last_completed && rec_tasks[ii]['status'].includes('completed')) {
+                        let temp_date = new Date(rec_tasks[ii]['id'].split(',')[1] + 'Z');
+                        if (temp_date > last_completed) { last_completed = temp_date; }
+                    }
+                }
+                // assign due date if no last completed
+                if (!last_completed) {
+                    due_date = new Date(temp_obj[i]['dateStart'] + 'Z');
+                    due_date.setDate(due_date.getDate() + days_skip);
+                }
+                // assign due date if last completed exists
+                else {
+                    due_date = new Date(last_completed);
+                    due_date.setDate(due_date.getDate() + days_skip);
+                }
+                // skip to next task if this trigger task is due outside drawn month
+                if (due_date > bottom_right_day_lol) { continue; }
                 let too_late = false;
-                if (rec_tasks.length > 0) {// has recordedTasks
-                    // find the most recent recordedTask that has been completed
-                    let most_recent_id = '';
-                    for (let ii = 0; ii < rec_tasks.length; ii++) {
-                        if (rec_tasks[ii]['status'] === 'completed' && rec_tasks[ii]['id'] > most_recent_id) {
-                            most_recent_id = rec_tasks[ii]['id'];
-                        }
-                    }
-                    // determine if can be drawn AND if too late or not
-                    if (most_recent_id) {
-                        const id_array = most_recent_id.split(',');
-                        let temp_start = new Date(id_array[1] + 'Z');
-                        temp_start.setDate(temp_start.getDate() + skip_amt);
-                        // skip drawing task due if that day is not in calendar view
-                        if (temp_start > bottom_right_day_lol) { continue; }
-                        // is too late or push task to future day within calendar view
-                        if (temp_start < temp_date_start) { too_late = true; }
-                        else {
-                            temp_date_start = new Date(temp_start);
-                            // handle end date
-                            if (id_array.length > 2 && id_array[2].length > 0) {
-                                let temp_end = new Date(id_array[2] + 'Z');
-                                temp_end.setDate(temp_end.getDate() + skip_amt);
-                                temp_date_end = new Date(temp_end);
-                            }
-                            day_element = document.getElementById(temp_date_start.getFullYear() + '-' + (temp_date_start.getMonth() + 1) + '-' + temp_date_start.getDate().toString());
-                        }
-                    }
+                // due date is before now so it is late
+                if (due_date <= now_date) {
+                    too_late = true;
+                    due_date = now_date;
                 }
-                else {// no recordedTasks
-                    // let out_date = new Date(start_date_utc);
-                    // out_date.setDate(out_date.getDate() + parseInt(repeat_values[1]));
-                    if (temp_date_start > out_date) { too_late = true; }
-                    // if (!too_late && out_date < bottom_right_day_lol) {
-                    //     day_element = document.getElementById(out_date.getFullYear() + '-' + (out_date.getMonth() + 1) + '-' + out_date.getDate().toString());
-                    // }
-                    if (!too_late) {
-                        if (out_date < bottom_right_day_lol) {
-                            day_element = document.getElementById(out_date.getFullYear() + '-' + (out_date.getMonth() + 1) + '-' + out_date.getDate().toString());
-                        }
-                        else { continue; }// the trigger task is due not in this month so skip rest of loop
-                    }
-                }
-                // write task
+                // // write task
+                let day_element = document.getElementById(due_date.getFullYear() + '-' + (due_date.getMonth() + 1) + '-' + due_date.getDate().toString());
                 let temp_div = document.createElement('div');
                 let temp_color = temp_obj[i]['color'];
-                if (temp_color === 'ffffff' || temp_color === "") { temp_div.style.border = '2px dashed black'; }
-                else { temp_div.style.border = 'dotted ' + '#' + temp_color; }
-                temp_div.id = temp_obj[i]['_id'] + ',' + temp_date_start.toISOString().slice(0, -5) + ',' + temp_date_end.toISOString().slice(0, -5);
+                temp_div.style.border = 'dotted ' + '#' + temp_color;
+                temp_div.id = temp_obj[i]['_id'] + ',' + due_date.toISOString().slice(0, -8) + ',' + due_date.toISOString().slice(0, -8);
                 temp_div.onclick = () => edit_task_popup(temp_div.id);
-                // temp_div.style.borderColor = '#' + temp_obj[i]['color'];
-                // temp_div.style.borderStyle = 'dotted';
                 temp_div.innerText = temp_obj[i]['title'];
                 if (too_late) {
                     temp_div.style.backgroundColor = 'red';
@@ -869,9 +849,9 @@ function draw_month(month, year) {
                             }
                         }
                         // convert temp_end_date to string as rec_task_id assignment requires it
-                        if (temp_end_date) { temp_end_date = temp_end_date.toISOString().slice(0, -5); }
+                        if (temp_end_date) { temp_end_date = temp_end_date.toISOString().slice(0, -8); }
                         // skip drawing if in recordedTasks
-                        const rec_task_id = temp_obj[i]['_id'] + ',' + temp_start_date.toISOString().slice(0, -5)
+                        const rec_task_id = temp_obj[i]['_id'] + ',' + temp_start_date.toISOString().slice(0, -8)
                             + ',' + temp_end_date;
                         const found_rTask = get_recordedTask(rec_task_id, temp_obj[i]['recordedTasks']);
                         if (found_rTask > -1) { continue; }
@@ -896,7 +876,6 @@ function draw_month(month, year) {
         // Handle errors
         console.error("There was an error in: draw_month(): ", error);
     }
-
 }
 
 // RETURN number of days in month: 28..31
@@ -1057,10 +1036,14 @@ id_button_t_update_submit.onclick=async  function () {
     let date_end = null;
     let date_start = null;
     if (id_form_dateend.value !== "") {
-        date_end = new Date(id_form_dateend.value).toISOString().slice(0, -5);
+        date_end = new Date(id_form_dateend.value + 'Z');
+        date_end.setTime(date_end.getTime() + LCL_OFFSET);
+        date_end = date_end.toISOString().slice(0, -8);
     }
     if (id_form_datestart.value !== "") {
-        date_start = new Date(id_form_datestart.value).toISOString().slice(0, -5);
+        date_start = new Date(id_form_datestart.value + 'Z');
+        date_start.setTime(date_start.getTime() + LCL_OFFSET);
+        date_start = date_start.toISOString().slice(0, -8);
     }
     let recorded_task_obj = {
         'id': id_form_id.value,
@@ -1132,13 +1115,13 @@ id_button_task_create_submit.onclick=async function () {
             date_end = null;
         }
         else {
-            date_end = new Date(id_form_dateend.value).toISOString().slice(0, -5);
+            date_end = new Date(id_form_dateend.value).toISOString().slice(0, -8);
         }
         if (id_form_datestart.value === "") {
             date_start = null;
         }
         else {
-            date_start = new Date(id_form_datestart.value).toISOString().slice(0, -5);
+            date_start = new Date(id_form_datestart.value).toISOString().slice(0, -8);
         }
         let task_obj = {
             'color': id_form_color.value.substring(1,id_form_color.value.length),
@@ -1226,10 +1209,10 @@ id_button_task_update_submit.onclick=async function () {
         let date_end = null;
         let date_start = null;
         if (id_form_dateend.value !== "") {
-            date_end = new Date(id_form_dateend.value).toISOString().slice(0, -5);
+            date_end = new Date(id_form_dateend.value).toISOString().slice(0, -8);
         }
         if (id_form_datestart.value !== "") {
-             date_start = new Date(id_form_datestart.value).toISOString().slice(0, -5);
+             date_start = new Date(id_form_datestart.value).toISOString().slice(0, -8);
         }
         // handle any dates in repeat
         let repeat_vals = convert_date_strings_to_local(id_form_repeat.value, false);

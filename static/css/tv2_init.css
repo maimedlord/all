@@ -1,3 +1,28 @@
+@media (min-width: 1500px) {
+    body {
+        font-size: small;
+    }
+    #nav {
+        font-size: large;
+        gap: 20px;
+    }
+}
+@media (max-width: 1500px) {
+    #nav {
+        font-size: x-large;
+        gap: 40px;
+    }
+}
+@media (max-width: 600px) {
+    body {
+        font-size: x-small;
+    }
+    #nav {
+        font-size: medium;
+        gap: 10px;
+    }
+}
+
 body {
     background-color: rgb(44, 44, 44);
     color: white;
@@ -12,11 +37,15 @@ body {
     box-shadow: white 2px 2px;
     color: white;
     cursor: pointer;
-    min-width: 70px;
+    /*min-width: 70px;*/
     padding: 3px;
     text-align: center;
     text-shadow: black 1px 1px;
     user-select: none;
+}
+
+.button:hover {
+    background-color: rgb(255, 255, 255, .75);
 }
 
 .button:active {
@@ -36,7 +65,11 @@ body {
     text-align: center;
     text-shadow: black 1px 1px;
     user-select: none;
-    width: 15px ;
+    width: 20px ;
+}
+
+.button_close_x:hover {
+    background-color: rgb(255, 255, 255, .75);
 }
 
 .button_close_x:active {
@@ -46,6 +79,48 @@ body {
 
 #button_create {
     background-color: rgb(0, 255, 25, 0.50);
+}
+
+#button_create:hover {
+    background-color: rgb(0, 255, 25);
+}
+
+.button_delete {
+    background-color: rgb(255, 0, 0, 0.50);
+    color: white;
+    height: 15px;
+    margin: 4px 4px 0 0;
+    width: 42px;
+}
+
+.button_delete:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+.button_edit {
+    height: 15px;
+    margin: 4px 4px 0 0;
+    width: 42px;
+}
+
+#button_delete_no {
+    background-color: rgb(255, 0, 0, 0.50);;
+    color: white;
+    width: 40px;
+}
+
+#button_delete_no:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+#button_delete_yes {
+    background-color: rgb(0, 255, 0, 0.50);
+    color: white;
+    width: 40px;
+}
+
+#button_delete_yes:hover {
+    background-color: rgb(0, 255, 0);
 }
 
 .err_message {
@@ -59,7 +134,7 @@ body {
     color: white;
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    flex-wrap: wrap;
     justify-content: center;
     width: 100%;
 }

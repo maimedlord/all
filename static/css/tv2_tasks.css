@@ -1,39 +1,41 @@
-.button_delete {
-    background-color: red;
-    color: white;
-    height: 20px;
-    margin: 4px 4px 0px 0px;
-}
-
-#button_delete_no {
-    background-color: red;
-    color: white;
-    width: 40px;
-}
-
-#button_delete_yes {
-    background-color: green;
-    color: white;
-    width: 40px;
-}
-
-.button_edit {
-    margin: 4px 4px 0px 0px;
-}
-
 #button_task_create_submit {
     background-color: rgb(0, 255, 25, 0.50);
     margin: 10px auto 5px auto;
-    width: 80px;
+    width: 85px;
+}
+
+#button_task_create_submit:hover {
+    background-color: rgb(0, 255, 25);
+}
+
+#button_task_update_submit {
+    background-color: rgb(0, 255, 25, 0.50);
+    margin: 10px auto 5px auto;
+    width: 85px;
+}
+
+#button_task_update_submit:hover {
+    background-color: rgb(0, 255, 25);
 }
 
 #button_t_delete_submit {
+    background-color: rgb(255, 0, 0, 0.50);
+    color: white;
     display: none;
+    margin: 10px auto 5px auto;
+}
+
+#button_t_delete_submit:hover {
+    background-color: rgb(255, 0, 0);
 }
 
 #button_t_update_submit {
     background-color: rgb(0, 255, 25, 0.50);
     margin: 10px auto 5px auto;
+}
+
+#button_t_update_submit:hover {
+    background-color: rgb(0, 255, 25);
 }
 
 #calendar_container {
@@ -120,8 +122,9 @@
 }
 
 #choose_month_go_input {
-    text-decoration: underline;
+    cursor: pointer;
     font-style: italic;
+    text-decoration: underline;
 }
 
 #choose_month_go_input:active {
@@ -278,7 +281,10 @@
 .task_menu {
     display: flex;
     flex-direction: row-reverse;
+    flex-wrap: wrap;
+    gap: 5px;
     width: 100%;
+    /*z-index: 1000;*/
 }
 
 #task_one_or_series {

@@ -206,9 +206,9 @@ async function get_obss() {
             obs_container.innerHTML = `
                 <div class="observable_menu">
                     <div class="button button_delete"
-                         onclick="confirm_delete_popup('${OBSS_OBJ['data'][i]['_id']}')">DELETE</div>
+                         onclick="confirm_delete_popup('${OBSS_OBJ['data'][i]['_id']}')">delete</div>
                     <div class="button button_edit"
-                         onclick="edit_obs_popup('${OBSS_OBJ['data'][i]['_id']}')">EDIT</div>
+                         onclick="edit_obs_popup('${OBSS_OBJ['data'][i]['_id']}')">edit</div>
                 </div>
             `;
             obs_container.innerHTML += `
@@ -647,9 +647,13 @@ id_button_update_rec_obs_submit.onclick=async function () {
         let temp_id_form_tags = id_form_tags.value === "" ? [] : (id_form_tags.value + ',').split(',');
         let temp_id_form_guests = id_form_guests.value === "" ? [] : (id_form_guests.value + ',').split(',');
         if (id_form_date.value === "") {
-            id_form_date.value = now_date.toISOString().slice(0, -5);
+            let temp_date = new Date(now_date);
+            temp_date.setTime(temp_date.getTime() + LCL_OFFSET);
+            id_form_date.value = temp_date.toISOString().slice(0, -5);
         } else {
-            id_form_date.value = new Date(id_form_date.value + 'Z').toISOString().slice(0, -5);
+            let temp_date = new Date(id_form_date.value + 'Z');
+            temp_date.setTime(temp_date.getTime() + LCL_OFFSET);
+            id_form_date.value = temp_date.toISOString().slice(0, -5);
         }
         let obs_obj = {
             'color': id_form_color.value.substring(1,id_form_color.value.length),// remove hashtag from color

@@ -1,36 +1,16 @@
-/*.button {*/
-/*    background-color: gainsboro;*/
-/*    border: black 1px solid;*/
-/*    box-shadow: black 2px 2px;*/
-/*    text-align: center;*/
-/*    width: 90px;*/
-/*}*/
-/*.button:active {*/
-/*    box-shadow: dimgray -2px -2px;*/
-/*}*/
+@media (min-width: 1500px) {
+    .obs_container {
+        max-width: 600px;
+        width: 30%;
+    }
+}
 
-.button_delete {
-    background-color: red;
-    color: white;
-    height: 15px;
-    margin: 4px 4px 0 0;
-    width: 50px;
+@media (max-width: 1500px) {
+    .obs_container {
+        min-width: 300px;
+    }
 }
-.button_edit {
-    height: 15px;
-    margin: 4px 4px 0 0;
-    width: 50px;
-}
-#button_delete_no {
-    background-color: red;
-    color: white;
-    width: 40px;
-}
-#button_delete_yes {
-    background-color: green;
-    color: white;
-    width: 40px;
-}
+
 #button_obs_create_submit {
     background-color: rgb(0, 255, 25, 0.50);
     margin: 0 auto 5px auto;
@@ -51,11 +31,19 @@
     margin: 0 auto 5px auto;
     width: 160px;
 }
+#button_update_rec_obs_submit:hover {
+    background-color: rgb(0, 255, 25);
+}
 #clear_find_obs_by_text {
+    cursor: pointer;
     text-decoration: underline;
     font-style: italic;
-    display: inline;
+    /*display: inline;*/
 }
+#clear_find_obs_by_text:hover {
+    color: rgb(255, 255, 255, .50);
+}
+#choose_obs_go_input {}
 .close_confirm_container {
     align-items: center;
     display: flex;
@@ -65,7 +53,10 @@
     width: 100%;
 }
 .input_field_text {
-    width: 95%;
+    min-width: 95%;
+}
+#find_obs_by_text_div {
+    /*width: 60px;*/
 }
 #form_create_obs {
     width: 100%
@@ -81,9 +72,11 @@
 }
 #menu_confirm_delete_container {
     align-items: center;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin: 10px auto 10px auto;
     width: 100%;
 }
 .padding5 {
@@ -95,8 +88,6 @@
     display: flex;
     flex-direction: column;
     font-size: small;
-    width: 20%;
-    max-width: 500px;
     padding: 5px;
     overflow-wrap: anywhere;
 }
@@ -175,6 +166,7 @@
 .observed_container {
     border: 2px solid;
     margin: 2px;
+    overflow: hidden;
     padding: 3px;
     /*width: 100%;*/
 }
@@ -184,7 +176,7 @@
     width: 100%;
 }
 #obss_container {
-    align-items: flex-start;
+    align-items: start;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -196,6 +188,7 @@
     align-items: center;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
     margin: 10px;
