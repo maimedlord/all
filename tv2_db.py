@@ -601,37 +601,4 @@ def view_update(id_str: str, view_obj):
 
 # TESTING
 if __name__ == '__main__':
-    # print(notes_get_all('67327892c32490cdcec4ff2b'))
-
-    print(note_create('673d1ba9850c9cb87395c86f', {  # DIFFERENCE
-        'dateCreated': datetime.now(timezone.utc),
-        'title': 'the title of the note',
-        'location': 'location as string',
-        'noteLog': [{
-            'logDate': datetime.now(timezone.utc),
-            'logCode': 0,
-            'logMessage': 'note first created'
-        }],
-        'tags': ['tag1', 'tag2'],
-        'text': 'text of de note my boy'
-    }))
-    # print(note_delete('67327892c32490cdcec4ff2b', '6733f09710745e9c7d549d30'))
-    # print('the note update was: ' + str(note_update('67327892c32490cdcec4ff2b', '6733fbf412982d5587dca55b', {
-    #     'title': 'this title has been updated!',
-    #     'location': 'location as string UPDATED UPDATEDUPDATEDUPDATEDUPDATEDUPDATED',
-    #     'tags': ['tag1', 'tag2', 'TAG3'],
-    #     'text': 'text of de note my boy UPDATED!'
-    # })))
-    # print(json.dumps(tv2_utility.convert_datetimes_to_string({
-    #     'dateCreated': datetime.now(timezone.utc),
-    #     'title': 'the title of the note',
-    #     'location': 'location as string',
-    #     'noteLog': [{
-    #         'logDate': datetime.now(timezone.utc),
-    #         'logCode': 0,
-    #         'logMessage': 'note first created'
-    #     }],
-    #     'tags': ['tag1', 'tag2'],
-    #     'text': 'text of de note my boy'
-    # })))
     pass
