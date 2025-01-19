@@ -5,6 +5,9 @@
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/tv2_observables.css') }}">
 {% endblock %}
+{#{% block javascript_head %}#}
+{#    <script src="https://d3js.org/d3.v7.min.js"></script>#}
+{#{% endblock %}#}
 {% block body %}
 {#  popup div for creating an observable  #}
     <div class="popup" id="obs_create_container">
@@ -168,10 +171,23 @@
         <div class="button" id="button_create">create</div>
     </div>
 {#  ...  #}
+    <div id="chart_menu">
+        <div id="chart_menu_all_time">all time</div>
+        <div id="chart_menu_last_7_days">last 7</div>
+        <div id="chart_menu_last_month">last month</div>
+        <div id="chart_menu_last_quarter">last quarter</div>
+        <div id="chart_menu_last_year">last year</div>
+        <div id="chart_menu_today">today</div>
+    </div>
+{#  ...  #}
+    <div id="chart"></div>
+
+{#  ...  #}
     <div id="obss_container">
         no data loaded...
     </div>
 {% endblock %}
 {% block javascript_footer %}
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="{{ url_for('static', filename='javascript/tv2_observables.js') }}"></script>
 {% endblock %}

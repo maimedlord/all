@@ -36,10 +36,9 @@ async function delete_note(note_id) {
         console.log(response);
         get_notes()
             .then(() => {})
-            .catch(error => console.error("Error in get_notes:", error));
+            .catch(error => handleError("get_notes", error));
     } catch (error) {
-        // Handle errors
-        console.error("There was an error with the fetch request: delete_note(): ", error);
+        handleError("delete_note", error);
     }
 }
 
@@ -89,19 +88,18 @@ async function get_notes() {
             id_notes_container.append(note_container);
         }
     } catch (error) {
-        // Handle errors
-        console.error("There was an error with the fetch request: get_notes(): ", error);
+        handleError("get_notes", error);
     }
 }
 
-function close_popups() {
-    // Select all divs with the class 'popup'
-    const divsToHide = document.querySelectorAll(".popup");
-    // Loop through each div and set display to 'none'
-    divsToHide.forEach(div => {
-        div.style.display = "none";
-    });
-}
+// function close_popups() {
+//     // Select all divs with the class 'popup'
+//     const divsToHide = document.querySelectorAll(".popup");
+//     // Loop through each div and set display to 'none'
+//     divsToHide.forEach(div => {
+//         div.style.display = "none";
+//     });
+// }
 
 function confirm_delete_popup(note_id) {
     try {
@@ -116,11 +114,12 @@ function confirm_delete_popup(note_id) {
                         .then(() => {
                             console.log('get_notes activated');
                         })
+                        .catch(error => handleError("get_notes", error));
                 })
+                .catch(error => handleError("delete_note", error));
         }
     } catch (error) {
-        // Handle errors
-        console.error("There was an error with the fetch request: confirm_delete_popup(): ", error);
+        handleError("confirm_delete_popup", error);
     }
 }
 
@@ -144,8 +143,7 @@ function edit_note_popup(note_id) {
         document.getElementById('update_note_text').value = local_note['text'];
         id_note_edit_container.style.display = 'flex';
     } catch (error) {
-        // Handle errors
-        console.error("There was an error with the fetch request: edit_note_popup(): ", error);
+        handleError("edit_note_popup", error);
     }
 }
 
@@ -162,52 +160,53 @@ function get_local_note(note_id) {
         }
         return null;
     } catch (error) {
-        // Handle errors
-        console.error("There was an error with get_local_note(): ", error);
+        handleError("get_local_note", error);
     }
 }
 
 function sort_notes() {
-    // Skip if no sort value or no children to sort
-    if (!id_select_sort_by.value || !id_notes_container.childNodes.length) {
-        return;
-    }
-    let sorted_arr = Array.from(id_notes_container.childNodes);
-    const sort_values = id_select_sort_by.value.split(',');
-    const sortMultiplier = sort_values[1] === '0' ? 1 : -1; // thx chatgpt
-    sorted_arr = sorted_arr.sort((a, b) => {
-        if (/^\d+$/.test(a.dataset[sort_values[0]])) {
-            return (parseInt(a.dataset[sort_values[0]]) - parseInt(b.dataset[sort_values[0]])) * sortMultiplier;
+    try {
+        // Skip if no sort value or no children to sort
+        if (!id_select_sort_by.value || !id_notes_container.childNodes.length) {
+            return;
         }
-        return a.dataset[sort_values[0]].localeCompare(b.dataset[sort_values[0]]) * sortMultiplier;
-    });
-    id_notes_container.innerHTML = '';
-    for (let element of sorted_arr) {
-        id_notes_container.append(element);
+        let sorted_arr = Array.from(id_notes_container.childNodes);
+        const sort_values = id_select_sort_by.value.split(',');
+        const sortMultiplier = sort_values[1] === '0' ? 1 : -1; // thx chatgpt
+        sorted_arr = sorted_arr.sort((a, b) => {
+            if (/^\d+$/.test(a.dataset[sort_values[0]])) {
+                return (parseInt(a.dataset[sort_values[0]]) - parseInt(b.dataset[sort_values[0]])) * sortMultiplier;
+            }
+            return a.dataset[sort_values[0]].localeCompare(b.dataset[sort_values[0]]) * sortMultiplier;
+        });
+        id_notes_container.innerHTML = '';
+        for (let element of sorted_arr) {
+            id_notes_container.append(element);
+        }
+    } catch (error) {
+        handleError("sort_notes", error);
     }
 }
 
 // onclicks:
-id_button_create.onclick=function () {
+id_button_create.onclick = function () {
     try {
         close_popups();
         id_note_create_container.style.display = 'flex';
     } catch (error) {
-        // Handle errors
-        console.error("There was an error with the fetch request: id_button_delete_no.onclick: ", error);
+        handleError("id_button_create.onclick", error);
     }
 }
 
-id_button_delete_no.onclick=function () {
+id_button_delete_no.onclick = function () {
     try {
         close_popups();
     } catch (error) {
-        // Handle errors
-        console.error("There was an error with the fetch request: id_button_delete_no.onclick: ", error);
+        handleError("id_button_delete_no.onclick", error);
     }
 }
 
-id_button_note_create_submit.onclick=async function () {
+id_button_note_create_submit.onclick = async function () {
     try {
         let id_form_color = document.getElementById('create_note_color');
         let id_form_title = document.getElementById('create_note_title');
@@ -235,7 +234,6 @@ id_button_note_create_submit.onclick=async function () {
         // make asynchronous POST request to the API
         const response = await fetch(url, {method: 'GET'});
         // check if response was successful
-        console.log(response);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -256,14 +254,13 @@ id_button_note_create_submit.onclick=async function () {
         id_form_text.value = '';
         get_notes()
             .then(() => {})
-            .catch(error => console.error("Error in get_notes:", error));
+            .catch(error => handleError("get_notes", error));
     } catch (error) {
-        // Handle errors
-        console.error("There was an error with the fetch request: id_button_note_create_submit.onclick: ", error);
+        handleError("id_button_note_create_submit.onclick", error);
     }
 }
 
-id_button_note_update_submit.onclick=async function () {
+id_button_note_update_submit.onclick = async function () {
     try {
         let id_form_id = document.getElementById('update_note_id');
         let id_form_color = document.getElementById('update_note_color');
@@ -306,10 +303,9 @@ id_button_note_update_submit.onclick=async function () {
         close_popups();
         get_notes()
             .then(() => {})
-            .catch(error => console.error("Error in get_notes:", error));
+            .catch(error => handleError("get_notes", error));
     } catch (error) {
-        // Handle errors
-        console.error("There was an error with the fetch request: id_button_note_update_submit.onclick: ", error);
+        handleError("id_button_note_update_submit.onclick", error);
     }
 }
 
@@ -331,10 +327,10 @@ id_select_sort_by.onclick = function () {
             }
         };
         view_update(NOTE_OBJ).catch(error =>
-            console.error("Error in id_select_sort_by.onclick:", error)
+            handleError("id_select_sort_by.onclick", error)
         );
     } catch (error) {
-        console.error("There was an error in id_select_sort_by.onclick:", error);
+        handleError("id_select_sort_by.onclick", error);
     }
 };
 

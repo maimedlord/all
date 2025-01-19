@@ -1,28 +1,72 @@
-@media (min-width: 1500px) {
-    body {
-        font-size: small;
-    }
-    #nav {
-        font-size: large;
-        gap: 20px;
-    }
-}
-@media (max-width: 1500px) {
-    #nav {
-        font-size: x-large;
-        gap: 40px;
-    }
-}
+/* Small screens (mobile) */
 @media (max-width: 600px) {
     body {
-        font-size: x-small;
+        font-size: 9px;
     }
     #nav {
-        font-size: medium;
-        gap: 10px;
+        font-size: 16px;
+        gap: 8px;
+    }
+    .button_close_x {
+        font-size: 12px;
+    }
+    #nav a {
+        font-size: 14px;
     }
 }
 
+/* Medium screens (tablet) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+    #nav {
+        font-size: 26px;
+        gap: 15px;
+    }
+    .button_close_x {
+        font-size: 16px;
+    }
+    #nav a {
+        font-size: 18px;
+    }
+}
+
+/* Large screens (desktop) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    body {
+        font-size: 18px;
+    }
+    #nav {
+        font-size: 30px;
+        gap: 25px;
+    }
+    .button_close_x {
+        font-size: 20px;
+    }
+    #nav a {
+        font-size: 22px;
+    }
+}
+
+/* Extra large screens (wide monitors) */
+@media (min-width: 1441px) {
+    body {
+        font-size: 20px;
+    }
+    #nav {
+        font-size: 36px;
+        gap: 40px;
+    }
+    .button_close_x {
+        font-size: 24px;
+    }
+    #nav a {
+        font-size: 26px;
+    }
+}
+
+/* --- B (body, button*, etc.) --- */
 body {
     background-color: rgb(44, 44, 44);
     color: white;
@@ -30,6 +74,7 @@ body {
     height: 100%;
     width: 100%;
 }
+
 .button {
     background-color: rgb(255, 255, 255, .50);
     border: black 1px solid;
@@ -37,20 +82,19 @@ body {
     box-shadow: white 2px 2px;
     color: white;
     cursor: pointer;
-    /*min-width: 70px;*/
     padding: 3px;
     text-align: center;
     text-shadow: black 1px 1px;
     user-select: none;
 }
 
-.button:hover {
-    background-color: rgb(255, 255, 255, .75);
-}
-
 .button:active {
     box-shadow: inset black 2px 2px;
     font-weight: bold;
+}
+
+.button:hover {
+    background-color: rgb(255, 255, 255, .75);
 }
 
 .button_close_x {
@@ -61,20 +105,20 @@ body {
     color: white;
     cursor: pointer;
     font-size: larger;
-+    padding: 4px;
+    padding: 4px;
     text-align: center;
     text-shadow: black 1px 1px;
     user-select: none;
-    width: 20px ;
-}
-
-.button_close_x:hover {
-    background-color: rgb(255, 255, 255, .75);
+    width: 20px;
 }
 
 .button_close_x:active {
     box-shadow: inset black 2px 2px;
     font-weight: bold;
+}
+
+.button_close_x:hover {
+    background-color: rgb(255, 255, 255, .75);
 }
 
 #button_create {
@@ -104,7 +148,7 @@ body {
 }
 
 #button_delete_no {
-    background-color: rgb(255, 0, 0, 0.50);;
+    background-color: rgb(255, 0, 0, 0.50);
     color: white;
     width: 40px;
 }
@@ -123,12 +167,16 @@ body {
     background-color: rgb(0, 255, 0);
 }
 
+/* --- E (err_*) --- */
 .err_message {
-
+    /* Currently empty */
 }
+
 #err_messages_container {
-
+    /* Currently empty */
 }
+
+/* --- N (nav) --- */
 #nav {
     align-items: center;
     color: white;
@@ -138,30 +186,34 @@ body {
     justify-content: center;
     width: 100%;
 }
+
 #nav a {
     color: white;
-    font-size: larger;
     text-decoration: none;
 }
-#nav a:hover {
-    color: rgb(255, 255, 255, .50);
-}
+
 #nav a:active {
     color: rgb(255, 255, 255, .75);
 }
 
+#nav a:hover {
+    color: rgb(255, 255, 255, .50);
+}
+
+/* --- R (row) --- */
 .row10 {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    /*width: 100%;*/
 }
+
 .rrow10 {
     display: flex;
     flex-direction: row-reverse;
     gap: 10px;
-    /*width: 100%;*/
 }
+
+/* --- W (width100) --- */
 .width100 {
     width: 100%;
 }

@@ -1,23 +1,3 @@
-#button_task_create_submit {
-    background-color: rgb(0, 255, 25, 0.50);
-    margin: 10px auto 5px auto;
-    width: 85px;
-}
-
-#button_task_create_submit:hover {
-    background-color: rgb(0, 255, 25);
-}
-
-#button_task_update_submit {
-    background-color: rgb(0, 255, 25, 0.50);
-    margin: 10px auto 5px auto;
-    width: 85px;
-}
-
-#button_task_update_submit:hover {
-    background-color: rgb(0, 255, 25);
-}
-
 #button_t_delete_submit {
     background-color: rgb(255, 0, 0, 0.50);
     color: white;
@@ -38,9 +18,30 @@
     background-color: rgb(0, 255, 25);
 }
 
+#button_task_create_submit {
+    background-color: rgb(0, 255, 25, 0.50);
+    margin: 10px auto 5px auto;
+    width: 85px;
+}
+
+#button_task_create_submit:hover {
+    background-color: rgb(0, 255, 25);
+}
+
+#button_task_update_submit {
+    background-color: rgb(0, 255, 25, 0.50);
+    margin: 10px auto 5px auto;
+    width: 85px;
+}
+
+#button_task_update_submit:hover {
+    background-color: rgb(0, 255, 25);
+}
+
 #calendar_container {
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
     width: 100%;
 }
 
@@ -51,27 +52,18 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    margin: 10px;
     width: 100%;
 }
 
 .calendar_month_day {
     background-color: rgb(255, 255, 255, 0.05);
     border: rgb(255, 255, 255, 0.65) solid 1px;
-    font-size: small;
+    font-size: calc(0.7rem + 0.1vw);
     min-height: 160px;
     overflow: hidden;
     padding: 2px;
     text-align: center;
     width: 100%;
-}
-
-.calendar_month_day_corner_top_left {
-    border-top-left-radius: 10px;
-}
-
-.calendar_month_day_corner_top_right {
-    border-top-right-radius: 10px;
 }
 
 .calendar_month_day_corner_bottom_left {
@@ -82,10 +74,18 @@
     border-bottom-right-radius: 10px;
 }
 
+.calendar_month_day_corner_top_left {
+    border-top-left-radius: 10px;
+}
+
+.calendar_month_day_corner_top_right {
+    border-top-right-radius: 10px;
+}
+
 .calendar_month_day_next_month {
     background-color: rgb(255, 255, 255, 0.12);
     border: black solid 1px;
-    font-size: smaller;
+    font-size: calc(0.65rem + 0.1vw);
     min-height: 90px;
     overflow: hidden;
     padding: 2px;
@@ -95,7 +95,7 @@
 .calendar_month_day_prev_month {
     background-color: rgb(255, 255, 255, 0.12);
     border: black solid 1px;
-    font-size: smaller;
+    font-size: calc(0.65rem + 0.1vw);
     min-height: 90px;
     overflow: hidden;
     padding: 2px;
@@ -111,18 +111,22 @@
     align-items: center;
     display: flex;
     flex-direction: row;
+    font-size: calc(1.25rem + 0.2vw);
+    font-weight: bold;
     justify-content: center;
+    margin-top: 15px;
     text-align: center;
     width: 100%;
 }
 
 #calendar_view {
-    margin: auto;
+    margin: 3px auto 0 auto;
     width: 95%;
 }
 
 #choose_month_go_input {
     cursor: pointer;
+    font-size: calc(0.9rem + 0.1vw);
     font-style: italic;
     text-decoration: underline;
 }
@@ -136,6 +140,7 @@
 }
 
 #clear_find_tasks_by_text {
+    font-size: calc(0.9rem + 0.1vw);
     text-decoration: underline;
     font-style: italic;
     display: inline;
@@ -200,12 +205,12 @@
     flex-direction: column;
     gap: 20px;
     justify-content: center;
-    left: 50%;               /* Centers the div horizontally */
+    left: 50%;
     min-width: 400px;
     padding: 5px;
-    position: fixed;         /* Locks the div in place, even when scrolling */
-    top: 50%;                  /* Aligns the div at the top of the viewport */
-    transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1000;
 }
 
@@ -228,12 +233,12 @@
     flex-direction: column;
     gap: 20px;
     justify-content: center;
-    left: 50%;               /* Centers the div horizontally */
+    left: 50%;
     min-width: 400px;
     padding: 5px;
-    position: fixed;         /* Locks the div in place, even when scrolling */
-    top: 50%;                  /* Aligns the div at the top of the viewport */
-    transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1000;
 }
 
@@ -243,6 +248,7 @@
     color: white;
     display: none;
     flex-direction: row;
+    font-size: calc(1rem + 0.2vw);
     font-weight: bold;
     justify-content: center;
     padding: 3px;
@@ -259,12 +265,12 @@
     flex-direction: column;
     gap: 20px;
     justify-content: center;
-    left: 50%;               /* Centers the div horizontally */
+    left: 50%;
     min-width: 400px;
     padding: 5px;
-    position: fixed;         /* Locks the div in place, even when scrolling */
-    top: 50%;                  /* Aligns the div at the top of the viewport */
-    transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1000;
 }
 
@@ -300,6 +306,7 @@
     color: white;
     display: none;
     flex-direction: row;
+    font-size: calc(1rem + 0.2vw);
     font-weight: bold;
     justify-content: center;
     padding: 3px;

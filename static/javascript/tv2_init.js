@@ -2,20 +2,45 @@
 const API_URL_BASE = 'http://127.0.0.1:5000/tv2/api';
 // let VIEWS_OBJ = false;
 
+function close_popups() {
+    try {
+        // Select all divs with the class 'popup'
+        const divsToHide = document.querySelectorAll(".popup");
+        // Loop through each div and set display to 'none'
+        divsToHide.forEach(div => {
+            div.style.display = "none";
+        });
+    } catch (error) {
+        handleError("close_popups", error);
+    }
+}
+
+function handleError(functionName, error) {
+    console.error(`Error in ${functionName}:`, error);
+}
+
 function is_all_digits(str) {
-    return /^\d+$/.test(str);
+    try {
+        return /^\d+$/.test(str);
+    } catch (error) {
+        handleError("is_all_digits", error);
+    }
 }
 
 function view_apply() {
-    if (!VIEWS_OBJ) { return; }
-    let object_keys = Object.keys(VIEWS_OBJ);
-    for (let i = 0; i < object_keys.length; i++) {
-        let temp_doc = document.getElementById(object_keys[i]);
-        // skip assigning value if id cannot be found
-        if (temp_doc) {
-            temp_doc.value = VIEWS_OBJ[object_keys[i]];
-            temp_doc.dataset.view_config = VIEWS_OBJ[object_keys[i]];
+    try {
+        if (!VIEWS_OBJ) { return; }
+        let object_keys = Object.keys(VIEWS_OBJ);
+        for (let i = 0; i < object_keys.length; i++) {
+            let temp_doc = document.getElementById(object_keys[i]);
+            // skip assigning value if id cannot be found
+            if (temp_doc) {
+                temp_doc.value = VIEWS_OBJ[object_keys[i]];
+                temp_doc.dataset.view_config = VIEWS_OBJ[object_keys[i]];
+            }
         }
+    } catch (error) {
+        handleError("view_apply", error);
     }
 }
 
@@ -31,7 +56,6 @@ async function view_configs_get(target) {
         // Parse the JSON data from the response
         const data = await response.json();
         VIEWS_OBJ = data.data;
-        // return true;
     } catch (error) {
         // Handle errors
         console.error("There was an error with the fetch request: get_view_configs(): ", error);

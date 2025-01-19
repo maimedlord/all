@@ -1,3 +1,10 @@
+/* --- MEDIA QUERIES FIRST --- */
+@media (max-width: 1500px) {
+    .obs_container {
+        min-width: 300px;
+    }
+}
+
 @media (min-width: 1500px) {
     .obs_container {
         max-width: 600px;
@@ -5,45 +12,66 @@
     }
 }
 
-@media (max-width: 1500px) {
-    .obs_container {
-        min-width: 300px;
-    }
-}
-
+/* --- B (button_) --- */
 #button_obs_create_submit {
     background-color: rgb(0, 255, 25, 0.50);
     margin: 0 auto 5px auto;
     width: 120px;
 }
+
 #button_obs_observe_submit {
     background-color: rgb(0, 255, 25, 0.50);
     margin: 0 auto 5px auto;
     width: 120px;
 }
+
 #button_obs_update_submit {
     background-color: rgb(0, 255, 25, 0.50);
     margin: 0 auto 5px auto;
     width: 80px;
 }
+
 #button_update_rec_obs_submit {
     background-color: rgb(0, 255, 25, 0.50);
     margin: 0 auto 5px auto;
     width: 160px;
 }
+
 #button_update_rec_obs_submit:hover {
     background-color: rgb(0, 255, 25);
 }
+
+#chart {
+    background-color: white;
+    margin: auto;
+    width: 95%;
+}
+
+#chart_menu {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* --- C (clear_, choose_, close_) --- */
 #clear_find_obs_by_text {
     cursor: pointer;
     text-decoration: underline;
     font-style: italic;
-    /*display: inline;*/
 }
+
 #clear_find_obs_by_text:hover {
     color: rgb(255, 255, 255, .50);
 }
-#choose_obs_go_input {}
+
+#choose_obs_go_input {
+    /* Empty selector */
+}
+
 .close_confirm_container {
     align-items: center;
     display: flex;
@@ -52,24 +80,34 @@
     margin-bottom: 10px;
     width: 100%;
 }
-.input_field_text {
-    min-width: 95%;
-}
+
+/* --- F (find_, form_) --- */
 #find_obs_by_text_div {
     /*width: 60px;*/
 }
+
 #form_create_obs {
     width: 100%
 }
+
 #form_observe_obs {
     width: 100%;
 }
-#form_update_recorded_obs {
-    width: 100%
-}
+
 #form_update_obs {
     width: 100%
 }
+
+#form_update_recorded_obs {
+    width: 100%
+}
+
+/* --- I (input_) --- */
+.input_field_text {
+    min-width: 95%;
+}
+
+/* --- M (menu_) --- */
 #menu_confirm_delete_container {
     align-items: center;
     display: flex;
@@ -79,18 +117,18 @@
     margin: 10px auto 10px auto;
     width: 100%;
 }
-.padding5 {
-    padding: 5px;+
-}
+
+/* --- O (obs_, observe_, observed_, obss_, obs_menu, observable_) --- */
 .obs_container {
     border: 2px solid;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    font-size: small;
+    font-size: calc(0.9rem + 0.2vw);
     padding: 5px;
     overflow-wrap: anywhere;
 }
+
 #obs_confirm_delete_container {
     align-items: center;
     background-color: rgb(35, 35, 35, 0.85);
@@ -100,14 +138,15 @@
     flex-direction: column;
     gap: 20px;
     justify-content: center;
-    left: 50%;               /* Centers the div horizontally */
+    left: 50%;
     min-width: 400px;
     padding: 5px;
-    position: fixed;         /* Locks the div in place, even when scrolling */
-    top: 50%;                  /* Aligns the div at the top of the viewport */
-    transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1000;
 }
+
 #obs_create_container {
     align-items: center;
     background-color: rgb(35, 35, 35, 0.85);
@@ -117,14 +156,15 @@
     flex-direction: column;
     gap: 20px;
     justify-content: center;
-    left: 50%;               /* Centers the div horizontally */
+    left: 50%;
     min-width: 400px;
     padding: 5px;
-    position: fixed;         /* Locks the div in place, even when scrolling */
-    top: 50%;                  /* Aligns the div at the top of the viewport */
-    transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1000;
 }
+
 #obs_create_error_message {
     align-items: center;
     background-color: red;
@@ -137,6 +177,7 @@
     text-align: center;
     width: 100%;
 }
+
 #observe_obs_container {
     align-items: center;
     background-color: rgb(35, 35, 35, 0.85);
@@ -146,14 +187,15 @@
     flex-direction: column;
     gap: 20px;
     justify-content: center;
-    left: 50%;               /* Centers the div horizontally */
+    left: 50%;
     min-width: 400px;
     padding: 5px;
-    position: fixed;         /* Locks the div in place, even when scrolling */
-    top: 50%;                  /* Aligns the div at the top of the viewport */
-    transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1000;
 }
+
 #observe_obs_title {
     align-items: center;
     display: flex;
@@ -161,20 +203,23 @@
     font-weight: bold;
     justify-content: center;
     text-align: center;
+    font-size: calc(1rem + 0.3vw);
     width: 100%;
 }
+
 .observed_container {
     border: 2px solid;
     margin: 2px;
     overflow: hidden;
     padding: 3px;
-    /*width: 100%;*/
 }
+
 .observed_list {
     flex-direction: column;
     gap: 5px;
     width: 100%;
 }
+
 #obss_container {
     align-items: start;
     display: flex;
@@ -184,6 +229,7 @@
     justify-content: center;
     width: 100%;
 }
+
 #obs_menu {
     align-items: center;
     display: flex;
@@ -194,6 +240,7 @@
     margin: 10px;
     width: 100%;
 }
+
 .observable_menu {
     align-items: center;
     display: flex;
@@ -202,9 +249,17 @@
     gap: 10px;
     margin-bottom: 5px;
 }
+
 #obs_update_error_message {
     display: none;
 }
+
+/* --- P (padding5) --- */
+.padding5 {
+    padding: 5px;
+}
+
+/* --- R (recorded_) --- */
 .recorded_obs_show {
     align-items: center;
     border-top: 1px solid rgb(115, 115, 115);
@@ -212,8 +267,11 @@
     flex-direction: row;
     justify-content: center;
     text-align: center;
+    font-size: calc(0.9rem + 0.1vw);
     width: 100%;
 }
+
+/* --- U (update_) --- */
 #update_obs_container {
     align-items: center;
     background-color: rgb(35, 35, 35, 0.85);
@@ -223,14 +281,15 @@
     flex-direction: column;
     gap: 20px;
     justify-content: center;
-    left: 50%;               /* Centers the div horizontally */
+    left: 50%;
     min-width: 400px;
     padding: 5px;
-    position: fixed;         /* Locks the div in place, even when scrolling */
-    top: 50%;                  /* Aligns the div at the top of the viewport */
-    transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1000;
 }
+
 #update_rec_obs_container {
     align-items: center;
     background-color: rgb(35, 35, 35, 0.85);
@@ -240,11 +299,11 @@
     flex-direction: column;
     gap: 20px;
     justify-content: center;
-    left: 50%;               /* Centers the div horizontally */
+    left: 50%;
     min-width: 400px;
     padding: 5px;
-    position: fixed;         /* Locks the div in place, even when scrolling */
-    top: 50%;                  /* Aligns the div at the top of the viewport */
-    transform: translate(-50%, -50%); /* Offsets by 50% of its width for perfect centering */
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1000;
 }
